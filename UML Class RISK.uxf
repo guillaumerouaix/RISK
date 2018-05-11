@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>287</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Joueur
+--
+-id: int
+-nom: String
+--
++ Joueur(): Joueur
++ getter &amp; setter
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>98</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Jeu
+--
+-id: int
+--
++ Jeu(): Jeu
++ getter &amp; setter
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>462</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Unité
+--
+-id: int
+-cout: int
+-puissance: int
+-prioritéATT: int
+-prioritéDEF: int
+-mouvement: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>287</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Territoire
+--
+-id: int
+-nom: String
+-couleur: String
+--
++ Territoire(): Territoire
++ getter &amp; setter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>882</x>
+      <y>462</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Mission
+--
+-id: int
+--
++ Mission(): Mission
++ getter &amp; setter
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>630</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Soldat
+--
++ Soldat(): Soldat
++ getter &amp; setter
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>630</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Cavalier
+--
++ Cavalier(): Cavalier
++ getter &amp; setter
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>630</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Canon
+--
++ Canon(): Canon
++ getter &amp; setter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>350</y>
+      <w>105</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0 : 1
+m2=0 : *</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>903</x>
+      <y>161</y>
+      <w>168</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1= 1 :1
+m2= 0 : *</panel_attributes>
+    <additional_attributes>10.0;10.0;200.0;10.0;200.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>595</x>
+      <y>63</y>
+      <w>518</w>
+      <h>238</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1= 0 : 1
+m2= 0 : *</panel_attributes>
+    <additional_attributes>700.0;320.0;700.0;10.0;10.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>833</x>
+      <y>224</y>
+      <w>35</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1 : 1
+m2=0 : 6</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>861</x>
+      <y>413</y>
+      <w>119</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0 : 6
+m2=0 : 1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;130.0;40.0;130.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>735</x>
+      <y>413</y>
+      <w>105</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1 : 1
+m2=0 : *</panel_attributes>
+    <additional_attributes>110.0;10.0;110.0;40.0;10.0;40.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>742</x>
+      <y>588</y>
+      <w>196</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;260.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>588</y>
+      <w>203</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>588</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>973</x>
+      <y>287</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Region
+--
+-id: int
+-nom: String
+-couleur: String
+--
++ Region(): Region
++ getter &amp; setter
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
