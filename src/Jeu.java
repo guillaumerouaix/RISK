@@ -1,19 +1,10 @@
-import java.awt.Font;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.Color;
 import javax.swing.JLabel;
-import java.awt.Image;
-import java.awt.RenderingHints;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 
 public class Jeu extends JFrame {
 
@@ -21,52 +12,39 @@ public class Jeu extends JFrame {
 	
 	ImageIcon icofond;
 	Image imgfond ; 
+	ImageIcon icomenu;
+	Image imgmenu; 
 	public Jeu() {
-//		JFrame fen = new JFrame ("Ordinateur Qui Parle");
-//
-//		JPanel pan = new JPanel(new ImageIcon("/images/RISK_couverture.jpg"));
-//		pan.setBackground(Color.WHITE);
-//		fen.setContentPane(pan);
-//
-//
-//		JTextField tape = new JTextField ();
-//
-//		Font police = new Font ("Arial", Font.BOLD, 25);
-//		pan.add(tape);
-//		tape.setBounds(60,450,560,50);
-//		tape.setFont(police);
-//
-//		JButton bouton = new JButton ("Dis lui !");
-//
-//		pan.add(bouton);
-//
-//		bouton.setVisible(true);
-//
-//		bouton.setBounds(650,450,150,50);
-//		
-//		fen.setSize(850,600);
-//
-//		fen.pack();
-//		fen.setLocationRelativeTo(null);
-//
-//		fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		fen.setVisible(true);
-		this.setSize(900,600);
+		
+		this.setSize(1920,1080);
+		this.setTitle("Jeu RISK");
 
 		this.icofond = new ImageIcon(getClass().getResource("/images/RISK_couverture.jpg"));
 		this.imgfond = this.icofond.getImage();
-		Image newfond = this.imgfond.getScaledInstance(this.getSize().width, this.getSize().height, java.awt.Image.SCALE_SMOOTH);
+		Image newfond = this.imgfond.getScaledInstance(this.getSize().width, this.getSize().height-50, java.awt.Image.SCALE_SMOOTH);
 		this.icofond = new ImageIcon(newfond);
+		JLabel fond = new JLabel(this.icofond);
+		
+		this.icomenu = new ImageIcon(getClass().getResource("/images/RISK_menu.png"));
+		this.imgmenu = this.icomenu.getImage();
+		Image newmenu = this.imgmenu.getScaledInstance(this.getSize().width, this.getSize().height-50, java.awt.Image.SCALE_SMOOTH);
+		this.icomenu = new ImageIcon(newmenu);
+		//JLabel menu = new JLabel(this.icomenu);
 		
 		this.setLocationRelativeTo(null);
-		JLabel fond = new JLabel(this.icofond);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		
-		this.add(fond);		
+		this.add(fond);
+		//this.add(menu);
 
-		
-		
+	}
+	
+	@Override
+	public void paintComponents(Graphics g) {
+		super.paintComponents(g);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(imgmenu ,0,0,null);
 	}
 }
 
