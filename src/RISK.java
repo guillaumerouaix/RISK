@@ -5,7 +5,7 @@ public class RISK {
 	public static void main(String[] args) {
 		
 		//affichage image couverture
-		Jeu jeu = new Jeu();
+		ImageLoader imageLoader = new ImageLoader("/images/RISK_couverture.jpg", 1200, 800);
 		
 		//attendre avant lancer jeu
 		try {
@@ -17,7 +17,6 @@ public class RISK {
 		//affichage map
 		Map m = new Map();
 		
-	    
 	}
 
 }
