@@ -1,9 +1,11 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Timer;
 
 public class RISK {
 
 	public static void main(String[] args) {
-		
+		/*
 		//affichage image couverture
 		ImageLoader imageLoader = new ImageLoader("/images/RISK_couverture.jpg", 1200, 800);
 		
@@ -13,10 +15,10 @@ public class RISK {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
+*/
 		//affichage map
 		Map m = new Map();
-		
+	
 	}
 
 }
