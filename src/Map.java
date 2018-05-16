@@ -11,9 +11,9 @@ public class Map {
 	public Map() {
 
 		StdDraw.setCanvasSize(1200, 800);
-		StdDraw.setScale(0, 15);
+		StdDraw.setScale(0, 18);
 		int dimension = 20;
-		String source = "C:\\Users\\Guillaume ROUAIX\\Desktop\\Java_workspace\\RISK\\src\\Territoire.txt";
+		String source = "./src/Territoire.txt";
 
 
 		int[][] grid = new int[dimension][dimension];
@@ -90,10 +90,10 @@ public class Map {
 					BufferedReader fichier = new BufferedReader(new FileReader(source));
 				while ((ligne = fichier.readLine()) != null) {
 					String values[]= ligne.split(" ");
-					if ((xx-1) <= xx || xx <= (xx+1) && (yy-1) <= yy || yy <= (yy+1)) {
-						int x = Integer.parseInt(values[3]);
-						int y = Integer.parseInt(values[4]);
-						System.out.println(values[0]+"  "+values[1]+"  "+values[2]);
+					int x = Integer.parseInt(values[3]);
+					int y = Integer.parseInt(values[4]);
+					if ((x-0.5) <= xxx && xxx <= (x+0.5) && (y-0.25) <= yyy && yyy <= (y+0.25)) {
+						System.out.println(values[0]+"  "+values[1]+"  "+values[2]+"  "+xxx+"  "+yyy);
 					}
 					
 				}
