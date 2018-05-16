@@ -27,7 +27,7 @@ public class Menu {
 		StdDraw.picture(9, 3, "./src/images/RISK_boutton_jouer.png", 4, 2);
 		
 		int i=0;
-		while (i <= 100000) {
+		while (i <= 1) {
 			if(StdDraw.mousePressed()){
 				Double xx=StdDraw.mouseX();
 				Double yy=StdDraw.mouseY();

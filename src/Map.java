@@ -93,7 +93,16 @@ public class Map {
 					int x = Integer.parseInt(values[3]);
 					int y = Integer.parseInt(values[4]);
 					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
-						System.out.println(values[0]+"  "+values[1]+"  "+values[2]+"  "+xx+"  "+yy);
+						StdDraw.setPenColor(StdDraw.WHITE);
+						StdDraw.filledSquare(1, 1, 1);
+						StdDraw.filledSquare(3, 1, 1);
+						StdDraw.filledSquare(5, 1, 1);
+						StdDraw.filledSquare(7, 1, 1);
+						StdDraw.filledSquare(9, 1, 1);
+						StdDraw.setPenColor(StdDraw.GRAY);
+						
+						StdDraw.textLeft(0.5, 1, values[5]+"  /  "+values[6]+"  "+values[1]+"  "+values[2]);
+						System.out.println(values[5]+"  "+values[6]+"  "+values[1]+"  "+values[2]+"  "+xx+"  "+yy);
 					}
 					
 				}
@@ -101,7 +110,6 @@ public class Map {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
 				i++;
 			}
 		}
