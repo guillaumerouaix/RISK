@@ -25,6 +25,8 @@ public class Map {
 			}
 		}
 */		
+		
+		StdDraw.picture(9, 17, "./src/images/RISK_logo.jpg", 5, 2);
 		try {
 			String ligne ;
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
