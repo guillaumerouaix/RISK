@@ -10,8 +10,9 @@ public class Map {
 	
 	public Map() {
 
-		StdDraw.setCanvasSize(1200, 800);
-		StdDraw.setScale(0, 18);
+		StdDraw.clear();
+		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
+		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
 		int dimension = 20;
 		String source = "./src/Territoire.txt";
 
@@ -26,7 +27,6 @@ public class Map {
 		}
 */		
 		
-		StdDraw.picture(9, 17, "./src/images/RISK_logo.jpg", 5, 2);
 		try {
 			String ligne ;
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
@@ -82,10 +82,8 @@ public class Map {
 		int i = 0;
 		while (i <= 100000) {
 			if(StdDraw.mousePressed()){
-				Double xxx=StdDraw.mouseX();
-				Double yyy=StdDraw.mouseY();
-				int xx = xxx.intValue();
-				int yy = yyy.intValue();
+				Double xx=StdDraw.mouseX();
+				Double yy=StdDraw.mouseY();
 				
 				try {
 					String ligne ;
@@ -94,8 +92,8 @@ public class Map {
 					String values[]= ligne.split(" ");
 					int x = Integer.parseInt(values[3]);
 					int y = Integer.parseInt(values[4]);
-					if ((x-0.5) <= xxx && xxx <= (x+0.5) && (y-0.25) <= yyy && yyy <= (y+0.25)) {
-						System.out.println(values[0]+"  "+values[1]+"  "+values[2]+"  "+xxx+"  "+yyy);
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
+						System.out.println(values[0]+"  "+values[1]+"  "+values[2]+"  "+xx+"  "+yy);
 					}
 					
 				}
