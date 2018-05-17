@@ -11,10 +11,13 @@ public class Map {
 	
 	public Map() {
 		
-		//mise à blanc de la fenêtre et affichage du logo
+		//mise à blanc de la fenêtre, affichage du logo et icon
 		StdDraw.clear();
 		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
+		StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+		StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
+		StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 		
 
 /*	
