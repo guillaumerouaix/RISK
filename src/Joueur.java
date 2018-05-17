@@ -1,7 +1,7 @@
 
 public class Joueur {
-	
-	public Joueur() {
-		
+	int id;
+	public Joueur(int idJoueur) {
+		id = idJoueur;
 	}
 }

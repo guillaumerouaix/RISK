@@ -41,53 +41,53 @@ public class Menu {
 				Double yy=StdDraw.mouseY();
 				
 				if(3.37 <= xx && xx <= 4.63 && 8 <= yy && yy <= 10) {
-					Joueur joueur1 = new Joueur();
-					Joueur joueurIA = new Joueur();
+					Joueur joueur1 = new Joueur(1);
+					Joueur joueurIA = new Joueur(2);
 					new Map();
 					i++;
 				}
 				
 				if(5.37 <= xx && xx <= 6.63 && 8 <= yy && yy <= 10) {
-					Joueur joueur1 = new Joueur();
-					Joueur joueur2 = new Joueur();
+					Joueur joueur1 = new Joueur(1);
+					Joueur joueur2 = new Joueur(2);
 					new Map();
 					i++;
 				}
 				
 				if(7.37 <= xx && xx <= 8.63 && 8 <= yy && yy <= 10) {
-					Joueur joueur1 = new Joueur();
-					Joueur joueur2 = new Joueur();
-					Joueur joueur3 = new Joueur();
+					Joueur joueur1 = new Joueur(1);
+					Joueur joueur2 = new Joueur(2);
+					Joueur joueur3 = new Joueur(3);
 					new Map();
 					i++;
 				}
 				
 				if(9.37 <= xx && xx <= 10.63 && 8 <= yy && yy <= 10) {
-					Joueur joueur1 = new Joueur();
-					Joueur joueur2 = new Joueur();
-					Joueur joueur3 = new Joueur();
-					Joueur joueur4 = new Joueur();
+					Joueur joueur1 = new Joueur(1);
+					Joueur joueur2 = new Joueur(2);
+					Joueur joueur3 = new Joueur(3);
+					Joueur joueur4 = new Joueur(4);
 					new Map();
 					i++;
 				}
 				
 				if(11.37 <= xx && xx <= 12.63 && 8 <= yy && yy <= 10) {
-					Joueur joueur1 = new Joueur();
-					Joueur joueur2 = new Joueur();
-					Joueur joueur3 = new Joueur();
-					Joueur joueur4 = new Joueur();
-					Joueur joueur5 = new Joueur();
+					Joueur joueur1 = new Joueur(1);
+					Joueur joueur2 = new Joueur(2);
+					Joueur joueur3 = new Joueur(3);
+					Joueur joueur4 = new Joueur(4);
+					Joueur joueur5 = new Joueur(5);
 					new Map();
 					i++;
 				}
 				
 				if(13.37 <= xx && xx <= 14.63 && 8 <= yy && yy <= 10) {
-					Joueur joueur1 = new Joueur();
-					Joueur joueur2 = new Joueur();
-					Joueur joueur3 = new Joueur();
-					Joueur joueur4 = new Joueur();
-					Joueur joueur5 = new Joueur();
-					Joueur joueur6 = new Joueur();
+					Joueur joueur1 = new Joueur(1);
+					Joueur joueur2 = new Joueur(2);
+					Joueur joueur3 = new Joueur(3);
+					Joueur joueur4 = new Joueur(4);
+					Joueur joueur5 = new Joueur(5);
+					Joueur joueur6 = new Joueur(6);
 					new Map();
 					i++;
 				}
