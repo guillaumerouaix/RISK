@@ -11,15 +11,30 @@ public class Map {
 	
 	public Map() {
 		
+		//mise à blanc de la fenêtre
 		StdDraw.clear();
 		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
-		int dimension = 20;
-
-
-		//int[][] grid = new int[dimension][dimension];
 		
-/*		StdDraw.setPenColor(StdDraw.RED);
+
+/*	
+		int dimension = 20;
+		int[][] grid = new int[dimension][dimension];		
+		
+		grille = new Case[dimension][dimension];
+		
+		for (int x = 0; x < dimension; x++) {
+
+			for (int y = 0; y < dimension; y++) {
+
+				grille[x][y] = new Case();
+			}
+		}
+*/
+		
+		
+/*		affichage de la grille
+ 		StdDraw.setPenColor(StdDraw.RED);
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid.length; y++) {
 				StdDraw.square(x, y, 0.5);
@@ -28,7 +43,7 @@ public class Map {
 */		
 		
 		
-		//mape graphique
+		//affichage mape graphique
 		try {
 			String ligne ;
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
@@ -85,18 +100,7 @@ public class Map {
 		
 		
 		
-		/*			
-		
-		grille = new Case[dimension][dimension];
-		
-		for (int x = 0; x < dimension; x++) {
 
-			for (int y = 0; y < dimension; y++) {
-
-				grille[x][y] = new Case();
-			}
-		}
-		*/
 		
 		
 	}
