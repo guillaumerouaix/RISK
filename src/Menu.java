@@ -43,14 +43,12 @@ public class Menu {
 				if(3.37 <= xx && xx <= 4.63 && 8 <= yy && yy <= 10) {
 					Joueur joueur1 = new Joueur(1);
 					Joueur joueurIA = new Joueur(2);
-					new Map();
 					i++;
 				}
 				
 				if(5.37 <= xx && xx <= 6.63 && 8 <= yy && yy <= 10) {
 					Joueur joueur1 = new Joueur(1);
 					Joueur joueur2 = new Joueur(2);
-					new Map();
 					i++;
 				}
 				
@@ -58,7 +56,6 @@ public class Menu {
 					Joueur joueur1 = new Joueur(1);
 					Joueur joueur2 = new Joueur(2);
 					Joueur joueur3 = new Joueur(3);
-					new Map();
 					i++;
 				}
 				
@@ -67,7 +64,6 @@ public class Menu {
 					Joueur joueur2 = new Joueur(2);
 					Joueur joueur3 = new Joueur(3);
 					Joueur joueur4 = new Joueur(4);
-					new Map();
 					i++;
 				}
 				
@@ -77,7 +73,6 @@ public class Menu {
 					Joueur joueur3 = new Joueur(3);
 					Joueur joueur4 = new Joueur(4);
 					Joueur joueur5 = new Joueur(5);
-					new Map();
 					i++;
 				}
 				
@@ -88,16 +83,10 @@ public class Menu {
 					Joueur joueur4 = new Joueur(4);
 					Joueur joueur5 = new Joueur(5);
 					Joueur joueur6 = new Joueur(6);
-					new Map();
 					i++;
 				}
 			}
 		}
 		
-
-		Cavalier cavalier = new Cavalier(1);
-		cavalier.affichagePion();
-		//Soldat soldat = new Soldat(1);
-		//soldat.affichagePion();
 	}
 }

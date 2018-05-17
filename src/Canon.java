@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import edu.princeton.cs.introcs.StdDraw;
 
 public class Canon extends Unite{
 	
@@ -6,6 +10,7 @@ public class Canon extends Unite{
 	int prioriteATT = 1;
 	int prioriteDEF = 3;
 	int mvtParTour = 3;
+	String source = "./src/Territoire.txt";
 	
 	public Canon(int nombreUnites) {
 		super(nombreUnites);
@@ -49,6 +54,33 @@ public class Canon extends Unite{
 
 	public void setMvtParTour(int mvtParTour) {
 		this.mvtParTour = mvtParTour;
+	}
+	
+	public void affichagePion() {
+		int i = 0;
+		while(i <= 1) {
+			if(StdDraw.mousePressed()){
+				Double xx=StdDraw.mouseX();
+				Double yy=StdDraw.mouseY();
+				try {
+					String ligne ;
+					BufferedReader fichier = new BufferedReader(new FileReader(source));
+					while ((ligne = fichier.readLine()) != null) {
+						String values[]= ligne.split(" ");
+						int x = Integer.parseInt(values[3]);
+						int y = Integer.parseInt(values[4]);
+						if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
+							StdDraw.picture(xx, yy, "./src/images/RISK_canon_jeton4.png", 0.5, 0.75);
+							i++;
+						}
+					}
+					fichier.close();
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 }

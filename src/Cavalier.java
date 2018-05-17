@@ -70,7 +70,7 @@ public class Cavalier extends Unite{
 						int x = Integer.parseInt(values[3]);
 						int y = Integer.parseInt(values[4]);
 						if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
-							StdDraw.picture(xx, yy, "./src/images/RISK_cavalier_jeton1.png", 1, 1);
+							StdDraw.picture(xx, yy, "./src/images/RISK_cavalier_jeton5.png", 0.5, 0.75);
 							i++;
 						}
 					}
