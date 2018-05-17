@@ -33,7 +33,7 @@ public class Menu {
 				Double yy=StdDraw.mouseY();
 				
 				if(7 <= xx && xx <= 11 && 2 <= yy && yy <= 4) {
-					Map map = new Map();
+					new Map();
 					i++;
 				}
 			}

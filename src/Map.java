@@ -6,18 +6,18 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Map {
 	
-	private Case[][] grille;
+	//private Case[][] grille;
+	String source = "./src/Territoire.txt";
 	
 	public Map() {
-
+		
 		StdDraw.clear();
 		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
 		int dimension = 20;
-		String source = "./src/Territoire.txt";
 
 
-		int[][] grid = new int[dimension][dimension];
+		//int[][] grid = new int[dimension][dimension];
 		
 /*		StdDraw.setPenColor(StdDraw.RED);
 		for (int x = 0; x < grid.length; x++) {
@@ -27,6 +27,8 @@ public class Map {
 		}
 */		
 		
+		
+		//mape graphique
 		try {
 			String ligne ;
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
@@ -66,6 +68,25 @@ public class Map {
 		}
 		
 		
+		//creation des territoires
+		String territoires;
+		try {
+			String ligne ;
+			BufferedReader fichier = new BufferedReader(new FileReader(source));
+		while ((ligne = fichier.readLine()) != null) {
+			String values[]= ligne.split(" ");
+			territoires = values[0]+values[1];
+//			Territoire territoires = new Territoire(values[5],values[0],values[6],values[1]);
+		}
+		fichier.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		/*			
+		
 		grille = new Case[dimension][dimension];
 		
 		for (int x = 0; x < dimension; x++) {
@@ -75,19 +96,20 @@ public class Map {
 				grille[x][y] = new Case();
 			}
 		}
+		*/
 		
 		
-		
-		
-		int i = 0;
-		while (i <= 100000) {
-			if(StdDraw.mousePressed()){
-				Double xx=StdDraw.mouseX();
-				Double yy=StdDraw.mouseY();
+	}
+	
+	//affichage nom territoire graphiquement
+	public void AffichageTerritoireGraphique() {
+		if(StdDraw.mousePressed()){
+			Double xx=StdDraw.mouseX();
+			Double yy=StdDraw.mouseY();
 				
-				try {
-					String ligne ;
-					BufferedReader fichier = new BufferedReader(new FileReader(source));
+			try {
+				String ligne ;
+				BufferedReader fichier = new BufferedReader(new FileReader(source));
 				while ((ligne = fichier.readLine()) != null) {
 					String values[]= ligne.split(" ");
 					int x = Integer.parseInt(values[3]);
@@ -107,17 +129,10 @@ public class Map {
 					
 				}
 				fichier.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				i++;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
-		
 	}
-	
 }
