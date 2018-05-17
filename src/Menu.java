@@ -94,8 +94,10 @@ public class Menu {
 			}
 		}
 		
-		//mise à blanc de la fenêtre
-		StdDraw.clear();
-		
+
+		Cavalier cavalier = new Cavalier(1);
+		cavalier.affichagePion();
+		//Soldat soldat = new Soldat(1);
+		//soldat.affichagePion();
 	}
 }

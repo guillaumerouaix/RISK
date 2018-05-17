@@ -11,7 +11,7 @@ public class Map {
 	
 	public Map() {
 		
-		//mise à blanc de la fenêtre
+		//mise à blanc de la fenêtre et affichage du logo
 		StdDraw.clear();
 		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
@@ -90,20 +90,15 @@ public class Map {
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
 		while ((ligne = fichier.readLine()) != null) {
 			String values[]= ligne.split(" ");
-			territoires = values[0]+values[1];
-//			Territoire territoires = new Territoire(values[5],values[0],values[6],values[1]);
+			territoires = "Territoire "+values[0]+values[1];
+//			Territoire j[i] = new Territoire(values[5],values[0],values[6],values[1]);
 		}
 		fichier.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-
-		
-		
 	}
+	
 	
 	//affichage nom territoire graphiquement
 	public void AffichageTerritoireGraphique() {
@@ -139,4 +134,5 @@ public class Map {
 			}
 		}
 	}
+	
 }
