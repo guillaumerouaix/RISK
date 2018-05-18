@@ -49,7 +49,7 @@ public class Unite {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon_selectionnee.png", 1, 1.5);
 					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
-					Soldat soldat = new Soldat(1);
+					Soldat soldat = new Soldat(this.getNombre(), joueurId);
 					soldat.affichagePion(joueurId);
 					j++;
 					Map.AffichageTerritoireGraphique();

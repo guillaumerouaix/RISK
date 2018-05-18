@@ -13,8 +13,14 @@ public class Soldat extends Unite{
 	String source = "./src/Territoire.txt";
 
 	
-	public Soldat(int nombreUnites) {
+	public Soldat(int nombreUnites, int idJoueur) {
 		super(nombreUnites, nombreUnites);
+		if(nombreUnites >= cout) {
+			this.affichagePion(idJoueur);
+			tabUnite[idJoueur].setNombre();
+		}else {
+			System.out.println("Erreur !");
+		}
 	}
 
 	public int getCout() {

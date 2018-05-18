@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import edu.princeton.cs.introcs.StdDraw;
+
 public class Jeu {
 	
 	public Jeu() {
@@ -20,6 +22,14 @@ public class Jeu {
 			System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
 		}
 
+		for(int i = 0; i <= nbJoueur; i++ ) {
+			StdDraw.setPenColor(StdDraw.GRAY);
+			int j = i+1;
+			StdDraw.textLeft(0.5, 16, "Joueur "+j);
+			
+			
+		}
+		
 		for(int i = 0; i <= nbJoueur; i++ ) {
 			tabUnite[i].positionnerPion(tabJoueur[i].getId());
 		}
