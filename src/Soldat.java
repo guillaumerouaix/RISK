@@ -14,7 +14,7 @@ public class Soldat extends Unite{
 
 	
 	public Soldat(int nombreUnites) {
-		super(nombreUnites);
+		super(nombreUnites, nombreUnites);
 	}
 
 	public int getCout() {
@@ -57,7 +57,7 @@ public class Soldat extends Unite{
 		this.mvtParTour = mvtParTour;
 	}
 	
-	public void affichagePion(int idJoueur) {
+	public boolean affichagePion(int idJoueur) {
 		int i = 0;
 		while(i <= 1) {
 			if(StdDraw.mousePressed()){
@@ -71,8 +71,9 @@ public class Soldat extends Unite{
 						int x = Integer.parseInt(values[3]);
 						int y = Integer.parseInt(values[4]);
 						if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
-							StdDraw.picture(xx, yy, "./src/images/RISK_soldat_jeton"+idJoueur+".png", 0.5, 0.75);
+							StdDraw.picture(x+0.32, y-0.20, "./src/images/RISK_soldat_jeton"+idJoueur+".png", 0.30, 0.5);
 							i++;
+							return true;
 						}
 					}
 					fichier.close();
@@ -82,6 +83,7 @@ public class Soldat extends Unite{
 				}
 			}
 		}
+		return false;
 	}
 
 }

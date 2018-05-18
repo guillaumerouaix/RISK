@@ -13,7 +13,7 @@ public class Canon extends Unite{
 	String source = "./src/Territoire.txt";
 	
 	public Canon(int nombreUnites) {
-		super(nombreUnites);
+		super(nombreUnites, nombreUnites);
 	}
 	
 	public int getCout() {
@@ -56,7 +56,7 @@ public class Canon extends Unite{
 		this.mvtParTour = mvtParTour;
 	}
 	
-	public void affichagePion(int idJoueur) {
+	public boolean affichagePion(int idJoueur) {
 		int i = 0;
 		while(i <= 1) {
 			if(StdDraw.mousePressed()){
@@ -70,8 +70,9 @@ public class Canon extends Unite{
 						int x = Integer.parseInt(values[3]);
 						int y = Integer.parseInt(values[4]);
 						if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
-							StdDraw.picture(xx, yy, "./src/images/RISK_canon_jeton"+idJoueur+".png", 0.5, 0.75);
+							StdDraw.picture(x, y-0.20, "./src/images/RISK_canon_jeton"+idJoueur+".png", 0.30, 0.5);
 							i++;
+							return true;
 						}
 					}
 					fichier.close();
@@ -81,6 +82,7 @@ public class Canon extends Unite{
 				}
 			}
 		}
+		return false;
 	}
 	
 }

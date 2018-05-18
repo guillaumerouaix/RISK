@@ -6,18 +6,18 @@ public class Menu {
 	public Menu() {
 		
 		//création fenêtre
-		StdDraw.setCanvasSize(1200, 800);
+		StdDraw.setCanvasSize(1400, 800);
 		StdDraw.setScale(0, 18);
 		
 		//affichage couverture jeu
-		StdDraw.picture(9, 9, "./src/images/RISK_couverture.jpg", 18, 18);
+//		StdDraw.picture(9, 9, "./src/images/RISK_couverture.jpg", 18, 18);
 		
 		//pause dans le code pour affichage couverture jeu
-		try {
-			java.lang.Thread. sleep(2500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			java.lang.Thread. sleep(2500);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		
 		//mise à blanc de la fenêtre
 		StdDraw.clear();
