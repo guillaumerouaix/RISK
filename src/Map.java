@@ -104,14 +104,14 @@ public class Map {
 	
 	
 	//affichage nom territoire graphiquement
-	public void AffichageTerritoireGraphique() {
+	public static void AffichageTerritoireGraphique() {
 		if(StdDraw.mousePressed()){
 			Double xx=StdDraw.mouseX();
 			Double yy=StdDraw.mouseY();
 				
 			try {
 				String ligne ;
-				BufferedReader fichier = new BufferedReader(new FileReader(source));
+				BufferedReader fichier = new BufferedReader(new FileReader("./src/Territoire.txt"));
 				while ((ligne = fichier.readLine()) != null) {
 					String values[]= ligne.split(" ");
 					int x = Integer.parseInt(values[3]);
