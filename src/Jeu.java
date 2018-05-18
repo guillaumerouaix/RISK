@@ -17,8 +17,7 @@ public class Jeu {
 		Map map = new Map();
 		
 		for(int i = 0; i <= nbJoueur; i++ ) {
-			System.out.println(tabUnite[i].getId());
-			i++;
+			System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
 		}
 
 		for(int i = 0; i <= nbJoueur; i++ ) {
