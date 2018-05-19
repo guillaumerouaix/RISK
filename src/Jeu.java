@@ -26,6 +26,7 @@ public class Jeu {
 				StdDraw.filledSquare(1, 16, 0.5);
 				StdDraw.setPenColor(StdDraw.WHITE);
 				StdDraw.textLeft(0.5, 16, "Joueur "+j);
+				tabUnite[i].affihageNbUnite();
 				JOptionPane.showMessageDialog(null, "Joueur "+j+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
 				tabUnite[i].positionnerPion(tabJoueur[i].getId());
 				System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
