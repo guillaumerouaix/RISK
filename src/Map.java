@@ -18,6 +18,7 @@ public class Map {
 		StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 		StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 		StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+		StdDraw.picture(15, 3, "./src/images/RISK_boutton_jouer.png", 3, 1.5);
 		
 
 /*	

@@ -5,18 +5,23 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Canon extends Unite{
 	
-	int cout = 3;
+	static int cout = 3;
 	int puissance = 2;
 	int prioriteATT = 1;
 	int prioriteDEF = 3;
 	int mvtParTour = 3;
 	String source = "./src/Territoire.txt";
 	
-	public Canon(int nombreUnites) {
-		super(nombreUnites, nombreUnites);
+	public Canon(int nombreUnites, int idJoueur) {
+		super(nombreUnites, idJoueur);
+		if(nombreUnites >= this.cout) {
+			this.affichagePion(idJoueur);
+		}else {
+			System.out.println("Erreur !");
+		}
 	}
 	
-	public int getCout() {
+	public static int getCout() {
 		return cout;
 	}
 

@@ -5,7 +5,7 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Soldat extends Unite{
 	
-	int cout = 1;
+	static int cout = 1;
 	int puissance = 1;
 	int prioriteATT = 2;
 	int prioriteDEF = 1;
@@ -14,16 +14,15 @@ public class Soldat extends Unite{
 
 	
 	public Soldat(int nombreUnites, int idJoueur) {
-		super(nombreUnites, nombreUnites);
-		if(nombreUnites >= cout) {
+		super(nombreUnites, idJoueur);
+		if(nombreUnites >= this.cout) {
 			this.affichagePion(idJoueur);
-			tabUnite[idJoueur].setNombre();
 		}else {
 			System.out.println("Erreur !");
 		}
 	}
 
-	public int getCout() {
+	public static int getCout() {
 		return cout;
 	}
 

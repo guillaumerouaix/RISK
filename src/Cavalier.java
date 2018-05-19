@@ -5,18 +5,23 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Cavalier extends Unite{
 	
-	int cout = 7;
+	static int cout = 7;
 	int puissance = 4;
 	int prioriteATT = 3;
 	int prioriteDEF = 2;
 	int mvtParTour = 1;
 	String source = "./src/Territoire.txt";
 	
-	public Cavalier(int nombreUnites) {
-		super(nombreUnites, nombreUnites);
+	public Cavalier(int nombreUnites, int idJoueur) {
+		super(nombreUnites, idJoueur);
+		if(nombreUnites >= this.cout) {
+			this.affichagePion(idJoueur);
+		}else {
+			System.out.println("Erreur !");
+		}
 	}
 	
-	public int getCout() {
+	public static int getCout() {
 		return cout;
 	}
 

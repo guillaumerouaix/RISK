@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import edu.princeton.cs.introcs.StdDraw;
 
@@ -17,21 +18,18 @@ public class Jeu {
 		}
 		
 		Map map = new Map();
-		
-		for(int i = 0; i <= nbJoueur; i++ ) {
-			System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
-		}
-
-		for(int i = 0; i <= nbJoueur; i++ ) {
-			StdDraw.setPenColor(StdDraw.GRAY);
-			int j = i+1;
-			StdDraw.textLeft(0.5, 16, "Joueur "+j);
-			
-			
-		}
-		
-		for(int i = 0; i <= nbJoueur; i++ ) {
-			tabUnite[i].positionnerPion(tabJoueur[i].getId());
+		for(int e = 0; e <= 3; e++ ) {
+			for(int i = 0; i <= nbJoueur; i++ ) {
+				int j = i+1;
+				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+				StdDraw.filledSquare(0.5, 16, 0.5);
+				StdDraw.filledSquare(1, 16, 0.5);
+				StdDraw.setPenColor(StdDraw.WHITE);
+				StdDraw.textLeft(0.5, 16, "Joueur "+j);
+				JOptionPane.showMessageDialog(null, "Joueur "+j+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+				tabUnite[i].positionnerPion(tabJoueur[i].getId());
+				System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
+			}
 		}
 		
 	}
