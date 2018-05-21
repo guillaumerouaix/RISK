@@ -31,7 +31,7 @@ public class Unite {
 		StdDraw.filledSquare(0.5, 15, 0.5);
 		StdDraw.filledSquare(1, 15, 0.5);
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.textLeft(0.5, 15, "Unite : "+this.getNombre());
+		StdDraw.textLeft(0.5, 15, "Unité : "+this.getNombre());
 	}
 	
 	public void positionnerPion(int joueurId) {

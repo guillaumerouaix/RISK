@@ -1,15 +1,15 @@
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Random;
 
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Map {
-	
-	//private Case[][] grille;
+	static Territoire [] tabTerritoire = new Territoire[41];
 	String source = "./src/Territoire.txt";
 	
-	public Map() {
+	public Map(int nbJoueur) {
 		
 		//mise à blanc de la fenêtre, affichage du logo et icon
 		StdDraw.clear();
@@ -20,25 +20,9 @@ public class Map {
 		StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 		StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_tour.png", 3, 1.5);
 		
-
-/*	
-		int dimension = 20;
-		int[][] grid = new int[dimension][dimension];		
-		
-		grille = new Case[dimension][dimension];
-		
-		for (int x = 0; x < dimension; x++) {
-
-			for (int y = 0; y < dimension; y++) {
-
-				grille[x][y] = new Case();
-			}
-		}
-*/
-		
-		
 /*		affichage de la grille
  		StdDraw.setPenColor(StdDraw.RED);
+ 		
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid.length; y++) {
 				StdDraw.square(x, y, 0.5);
@@ -86,17 +70,18 @@ public class Map {
 			e.printStackTrace();
 		}
 		
-		
 		//creation des territoires
-		String territoires;
+		Random r = new Random();
+		int k = 0;
 		try {
 			String ligne ;
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
 		while ((ligne = fichier.readLine()) != null) {
 			String values[]= ligne.split(" ");
-			territoires = "Territoire "+values[0]+values[1];
-//			Territoire j[i] = new Territoire(values[5],values[0],values[6],values[1]);
-		}
+			int valeur = 0 + r.nextInt(nbJoueur+1 - 0);
+			System.out.println(valeur);
+			tabTerritoire[k] = new Territoire(values[5], values[0], values[6], values[1], valeur, values[3], values[4], values[2]);
+			}
 		fichier.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,6 +122,44 @@ public class Map {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	//affichage map d'un joueur
+	public static void AffichageMapJoueur(int idJoueur) {
+		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
+		for (int i = 0; i <= 41; i++) {
+			System.out.println(tabTerritoire[i].getIdJoueur());
+			if(tabTerritoire[i].getIdJoueur() == idJoueur) {
+				int x = Integer.parseInt(tabTerritoire[i].getPosition_x());
+				int y = Integer.parseInt(tabTerritoire[i].getPosition_y());
+				Color couleur = null;
+				switch("id "+tabTerritoire[i].getCouleur()) {
+					case "RED" :
+						couleur = StdDraw.RED;
+						break;
+					case "YELLOW" :
+						couleur = StdDraw.YELLOW;
+						break;
+					case "ORANGE" :
+						couleur = StdDraw.PRINCETON_ORANGE;
+						break;
+					case "BLUE" :
+						couleur = StdDraw.BLUE;
+						break;
+					case "GREEN" :
+						couleur = StdDraw.GREEN;
+						break;
+					case "PURPLE" :
+						couleur = StdDraw.MAGENTA;
+						break;
+				}
+				StdDraw.setPenColor(couleur);
+				StdDraw.filledSquare(x, y, 0.5);
+				StdDraw.setPenColor(StdDraw.WHITE);
+				StdDraw.square(x, y, 0.5);
+			}
+		}
+
 	}
 	
 }

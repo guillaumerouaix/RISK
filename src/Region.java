@@ -1,20 +1,20 @@
 
 public class Region {
-	String nomRegion;
-	String idRegion;
+	String nom;
+	String id;
 	static String source = "./src/Territoire.txt";
 	
-	public Region(String nom, String id) {
-		nomRegion = nom;
-		idRegion = id;
+	public Region(String nomRegion, String idRegion) {
+		nom = nomRegion;
+		id = idRegion;
 	}
 	
 	public String getNom() {
-		return nomRegion;
+		return nom;
 	}
 	
 	public String getId() {
-		return idRegion;
+		return id;
 	}
 	
 }

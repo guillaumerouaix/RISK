@@ -16,8 +16,9 @@ public class Jeu {
 			tabJoueur[i] = new Joueur(i);
 			tabUnite[i] = new Unite(armeeInit[nbJoueur],tabJoueur[i].getId());
 		}
-		
-		Map map = new Map();
+
+		Map map = new Map(nbJoueur);
+
 		for(int e = 0; e <= 3; e++ ) {
 			for(int i = 0; i <= nbJoueur; i++ ) {
 				int j = i+1;
@@ -28,6 +29,7 @@ public class Jeu {
 				StdDraw.textLeft(0.5, 16, "Joueur "+j);
 				tabUnite[i].affihageNbUnite();
 				JOptionPane.showMessageDialog(null, "Joueur "+j+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+				Map.AffichageMapJoueur(i);
 				tabUnite[i].positionnerPion(tabJoueur[i].getId());
 				System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
 			}
