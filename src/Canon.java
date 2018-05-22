@@ -12,7 +12,7 @@ public class Canon extends Unite{
 	int mvtParTour = 3;
 	String source = "./src/Territoire.txt";
 	
-	public Canon(int nombreUnites, int idJoueur) {
+	public Canon(int nombreUnites, int idJoueur, Double xx, Double yy) {
 		super(nombreUnites, idJoueur);
 		if(nombreUnites >= this.cout) {
 			this.affichagePion(idJoueur);

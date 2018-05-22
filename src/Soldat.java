@@ -13,7 +13,7 @@ public class Soldat extends Unite{
 	String source = "./src/Territoire.txt";
 
 	
-	public Soldat(int nombreUnites, int idJoueur) {
+	public Soldat(int nombreUnites, int idJoueur, Double xx, Double yy) {
 		super(nombreUnites, idJoueur);
 		if(nombreUnites >= this.cout) {
 			this.affichagePion(idJoueur);

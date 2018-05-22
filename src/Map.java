@@ -6,9 +6,11 @@ import java.util.Random;
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Map {
+	
 	Territoire [] tabTerritoire;
 	String source = "./src/Territoire.txt";
-	
+	int nbTerritoireJoueur;
+
 	public Map(int nbJoueur) {
 		
 //mise à blanc de la fenêtre, affichage du logo et icon
@@ -82,6 +84,16 @@ public class Map {
 		}
 	}
 	
+	public int getNbTerritoireJoueur(int idJoueur) {
+		int j = 0;
+		for (int i = 0; i <= 41; i++) {
+			if(tabTerritoire[i].getIdJoueur() == idJoueur) {
+				j++;
+			}
+		}
+		nbTerritoireJoueur = j;
+		return nbTerritoireJoueur;
+	}
 	
 	//affichage nom territoire graphiquement
 	public static void AffichageTerritoireGraphique() {

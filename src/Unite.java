@@ -6,9 +6,10 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Unite {
 	
+	Unite [] tabUnite;
 	int nombre;
 	int id;
-	
+	 
 	public Unite(int nombreUnites, int idJoueur) {
 		nombre = nombreUnites;
 		id = idJoueur;
@@ -40,27 +41,26 @@ public class Unite {
 			if(StdDraw.mousePressed()){
 				Double xx=StdDraw.mouseX();
 				Double yy=StdDraw.mouseY();
-				if(7.5 <= xx && xx <= 8.5 && 2.25 <= yy && yy <= 3.25) {
+				if(StdDraw.mousePressed() && 7.5 <= xx && xx <= 8.5 && 2.25 <= yy && yy <= 3.25) {
 					if(this.getNombre() >= Cavalier.getCout()) {
 						StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon_selectionnee.png", 1, 1.5);
 						StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 						StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
-						Cavalier cavalier = new Cavalier(this.getNombre(), joueurId);
+						Cavalier cavalier = new Cavalier(this.getNombre(), joueurId, xx, yy);
 						this.setNombre(nombre-Cavalier.getCout());
-						cavalier.affichagePion(joueurId);
-						Map.AffichageTerritoireGraphique();
+						Map.AffichageTerritoireGraphique(); 
 						this.affihageNbUnite();
 					}else {
 						JOptionPane.showMessageDialog(null, "Vous n'avez que "+this.getNombre()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
-				if(1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
+				if(StdDraw.mousePressed() && 1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
 					if(this.getNombre() >= Soldat.getCout()) {
 						StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 						StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon_selectionnee.png", 1, 1.5);
 						StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
-						Soldat soldat = new Soldat(this.getNombre(), joueurId);
+						Soldat soldat = new Soldat(this.getNombre(), joueurId, xx, yy);
 						this.setNombre(nombre-Soldat.getCout());
 						Map.AffichageTerritoireGraphique();
 						this.affihageNbUnite();
@@ -69,12 +69,12 @@ public class Unite {
 					}
 				}
 				
-				if(4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
+				if(StdDraw.mousePressed() && 4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
 					if(this.getNombre() >= Canon.getCout()) {
 						StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 						StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 						StdDraw.picture(5, 3, "./src/images/RISK_canon_icon_selectionnee.png", 1.5, 2);
-						Canon canon = new Canon(this.getNombre(), joueurId);
+						Canon canon = new Canon(this.getNombre(), joueurId, xx, yy);
 						this.setNombre(nombre-Canon.getCout());
 						Map.AffichageTerritoireGraphique();
 						this.affihageNbUnite();
@@ -83,7 +83,7 @@ public class Unite {
 					}
 				}
 				
-				if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+				if(StdDraw.mousePressed() && 13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
 					System.out.println("Fin tour");
 					j++;
 				}
