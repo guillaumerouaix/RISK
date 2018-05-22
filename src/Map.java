@@ -6,19 +6,20 @@ import java.util.Random;
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Map {
-	static Territoire [] tabTerritoire = new Territoire[41];
+	Territoire [] tabTerritoire;
 	String source = "./src/Territoire.txt";
 	
 	public Map(int nbJoueur) {
 		
-		//mise à blanc de la fenêtre, affichage du logo et icon
+//mise à blanc de la fenêtre, affichage du logo et icon
 		StdDraw.clear();
-		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
+		StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
 		StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 		StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 		StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 		StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_tour.png", 3, 1.5);
+		
 		
 /*		affichage de la grille
  		StdDraw.setPenColor(StdDraw.RED);
@@ -31,7 +32,10 @@ public class Map {
 */		
 		
 		
-		//affichage mape graphique
+//affichage mape graphique
+		tabTerritoire  = new Territoire[42];
+		Random r = new Random();
+		int i = 0;
 		try {
 			String ligne ;
 			BufferedReader fichier = new BufferedReader(new FileReader(source));
@@ -45,7 +49,7 @@ public class Map {
 					couleur = StdDraw.RED;
 					break;
 				case "YELLOW" :
-					couleur = StdDraw.YELLOW;
+					couleur = StdDraw.CYAN;
 					break;
 				case "ORANGE" :
 					couleur = StdDraw.PRINCETON_ORANGE;
@@ -64,24 +68,14 @@ public class Map {
 			StdDraw.filledSquare(x, y, 0.5);
 			StdDraw.setPenColor(StdDraw.WHITE);
 			StdDraw.square(x, y, 0.5);
-		}
-		fichier.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		//creation des territoires
-		Random r = new Random();
-		int k = 0;
-		try {
-			String ligne ;
-			BufferedReader fichier = new BufferedReader(new FileReader(source));
-		while ((ligne = fichier.readLine()) != null) {
-			String values[]= ligne.split(" ");
+			
+//creation des territoires
 			int valeur = 0 + r.nextInt(nbJoueur+1 - 0);
 			System.out.println(valeur);
-			tabTerritoire[k] = new Territoire(values[5], values[0], values[6], values[1], valeur, values[3], values[4], values[2]);
-			}
+			tabTerritoire[i] = new Territoire(values[5], values[0], values[6], values[1], valeur, values[3], values[4], values[2]);
+			System.out.println("tab id "+i+" "+values[0]+values[1]);
+			i++;
+		}
 		fichier.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,20 +119,20 @@ public class Map {
 	}
 	
 	//affichage map d'un joueur
-	public static void AffichageMapJoueur(int idJoueur) {
-		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
+	public void AffichageMapJoueur(int idJoueur) {
+		StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
+		StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 		for (int i = 0; i <= 41; i++) {
-			System.out.println(tabTerritoire[i].getIdJoueur());
 			if(tabTerritoire[i].getIdJoueur() == idJoueur) {
 				int x = Integer.parseInt(tabTerritoire[i].getPosition_x());
 				int y = Integer.parseInt(tabTerritoire[i].getPosition_y());
 				Color couleur = null;
-				switch("id "+tabTerritoire[i].getCouleur()) {
+				switch(tabTerritoire[i].getCouleur()) {
 					case "RED" :
 						couleur = StdDraw.RED;
 						break;
 					case "YELLOW" :
-						couleur = StdDraw.YELLOW;
+						couleur = StdDraw.CYAN;
 						break;
 					case "ORANGE" :
 						couleur = StdDraw.PRINCETON_ORANGE;

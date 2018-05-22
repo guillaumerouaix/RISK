@@ -24,7 +24,7 @@ public class Menu {
 		
 		//affichage graphique du menu
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
-		StdDraw.picture(8.75, 8.5, "./src/images/RISK_menu.png", 15.5, 13);
+		StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 		StdDraw.picture(4, 9, "./src/images/RISK_boutton1.png", 1.25, 2);
 		StdDraw.picture(6, 9, "./src/images/RISK_boutton2.png", 1.25, 2);
 		StdDraw.picture(8, 9, "./src/images/RISK_boutton3.png", 1.25, 2);
