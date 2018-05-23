@@ -27,13 +27,8 @@ public class Unite {
 		return id;
 	}
 	
-	public void affihageNbUnite() {
-		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-		StdDraw.filledSquare(0.5, 15, 0.5);
-		StdDraw.filledSquare(1, 15, 0.5);
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.textLeft(0.5, 15, "Unité : "+this.getNombre());
-	}
+	
+	
 	
 	public void positionnerPion(int joueurId) {
 		int j = 0;
@@ -48,7 +43,6 @@ public class Unite {
 						StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 						Cavalier cavalier = new Cavalier(this.getNombre(), joueurId, xx, yy);
 						this.setNombre(nombre-Cavalier.getCout());
-						Map.AffichageTerritoireGraphique(); 
 						this.affihageNbUnite();
 					}else {
 						JOptionPane.showMessageDialog(null, "Vous n'avez que "+this.getNombre()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
@@ -62,7 +56,6 @@ public class Unite {
 						StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 						Soldat soldat = new Soldat(this.getNombre(), joueurId, xx, yy);
 						this.setNombre(nombre-Soldat.getCout());
-						Map.AffichageTerritoireGraphique();
 						this.affihageNbUnite();
 					}else {
 						JOptionPane.showMessageDialog(null, "Vous n'avez que "+this.getNombre()+" unités !\nUn soldat en coute "+Soldat.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
@@ -76,7 +69,6 @@ public class Unite {
 						StdDraw.picture(5, 3, "./src/images/RISK_canon_icon_selectionnee.png", 1.5, 2);
 						Canon canon = new Canon(this.getNombre(), joueurId, xx, yy);
 						this.setNombre(nombre-Canon.getCout());
-						Map.AffichageTerritoireGraphique();
 						this.affihageNbUnite();
 					}else {
 						JOptionPane.showMessageDialog(null, "Vous n'avez que "+this.getNombre()+" unités !\nUn canon en coute "+Canon.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);

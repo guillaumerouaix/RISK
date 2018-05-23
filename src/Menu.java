@@ -34,8 +34,12 @@ public class Menu {
 		StdDraw.picture(9, 3, "./src/images/RISK_message_menu.png", 11, 2);
 	}
 		
+	
+	
+	
+//récupération de la selection du nombre de joueurs
+	
 	public int SelectionNbJoueur() {
-		//récupération de la selection du nombre de joueurs, création des joueurs et de la map
 		int i=0;
 		while (i <= 1) {
 			if(StdDraw.mousePressed()){
