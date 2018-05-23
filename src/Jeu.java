@@ -78,6 +78,7 @@ public class Jeu {
 			AffichagePions();
 			int j = 0;
 			while(tabUnite[i].getNombre() > 0 && j < 1) {
+				map.AffichageNomTerritoire();
 				String typeUnite = SelectionTypeUnite(i);
 				if(typeUnite != "" && typeUnite != "fin tour") {
 					CreationPion(i, typeUnite);
@@ -159,6 +160,7 @@ public class Jeu {
 		int i = 0;
 		while(i < 1) {
 			if(StdDraw.mousePressed()){
+				map.AffichageNomTerritoire();
 				Double xx=StdDraw.mouseX();
 				Double yy=StdDraw.mouseY();
 				for (int j = 0; j <= 41; j++) {
@@ -201,22 +203,29 @@ public class Jeu {
 	public void AffichagePions() {
 		String ligne;
 		String ligne2;
+		int k;
 		StdDraw.setPenColor(StdDraw.BLACK);
 		for(int i = 0; i < pionListe.size(); i++) {
 			ligne = (String) pionListe.get(i);
 			String values[]= ligne.split(" ");
 			int idJoueur = Integer.parseInt(values[0]);
+			String typePion = values[1];
 			int x = Integer.parseInt(values[2]);
 			int y = Integer.parseInt(values[3]);
-			int k = 0;
+			k = 0;
 			for(int j = 0; j < pionListe.size(); j++) {
 				ligne2 = (String) pionListe.get(j);
-				if(ligne == ligne2) {
-					k = k+1;
-					System.out.println("nb soldat "+k);
+				String values2[]= ligne.split(" ");
+				int idJoueur2 = Integer.parseInt(values2[0]);
+				String typePion2 = values2[1];
+				int x2 = Integer.parseInt(values2[2]);
+				int y2 = Integer.parseInt(values2[3]);
+				if(x == x2 && y == y2 && idJoueur == idJoueur2) {
+					k++;
+					System.out.println("nb soldat "+k+" "+pionListe.size()+" "+ligne+" "+ligne2);
 				}
 			}
-			switch(values[1]) {
+			switch(typePion) {
 			case "cavalier" :
 				if(k >= 1) {
 					StdDraw.textLeft(x-0.38, y+0.20, ""+k);

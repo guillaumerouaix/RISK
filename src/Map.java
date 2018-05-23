@@ -54,9 +54,25 @@ public class Map {
 		}
 		return nbTerritoireJoueur;
 	}
-
+	
+	
+	
+	
+//récuperation du nb de regions possédant un joueur
+	
+	public int getNbRegionJoueur(int idJoueur) {
+		int nbRegionJoueur = 0;
+		for (int i = 0; i <= 41; i++) {
+			if(tabTerritoire[i]. getNomRegion() =) {
+			if(tabTerritoire[i].getIdJoueur() == idJoueur) {
+				nbRegionJoueur++;
+			}
+		}
+		return nbRegionJoueur;
+	}
 		
 
+	
 	
 //affichage map graphiquement
 	
@@ -138,7 +154,7 @@ public class Map {
 	
 //affichage nom territoire graphiquement
 		
-	public void AffichageNomTerritoireGraphique() {
+	public void AffichageNomTerritoire() {
 		if(StdDraw.mousePressed()){
 			Double xx=StdDraw.mouseX();
 			Double yy=StdDraw.mouseY();

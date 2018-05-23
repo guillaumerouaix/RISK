@@ -19,11 +19,11 @@ public class Territoire extends Region{
 	}
 
 	public String getNomRegion() {
-		return getNomRegion();
+		return super.nom;
 	}
 	
 	public String getIdRegion() {
-		return getIdRegion();
+		return super.id;
 	}
 	
 	public String getNom() {
