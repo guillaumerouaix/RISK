@@ -58,17 +58,49 @@ public class Map {
 	
 	
 	
-//récuperation du nb de regions possédant un joueur
+//récuperation nom regions possédant un joueur
 	
-	public int getNbRegionJoueur(int idJoueur) {
-		int nbRegionJoueur = 0;
+	public String getNomsRegionJoueur(int idJoueur) {
+		String nomsRegionJoueur = "";
+		int j = 0;
 		for (int i = 0; i <= 41; i++) {
-			if(tabTerritoire[i]. getNomRegion() =) {
-			if(tabTerritoire[i].getIdJoueur() == idJoueur) {
-				nbRegionJoueur++;
+			if(tabTerritoire[i].getNomRegion() == "AMERIQUE_DU_SUD" && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				if (j >= 4) {
+					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
+				}
+			}
+			j = 0;
+			if(tabTerritoire[i].getNomRegion() == "AMERIQUE_DU_NORD" && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				if (j >= 9) {
+					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
+				}
+			}
+			j = 0;
+			if(tabTerritoire[i].getNomRegion() == "AFRIQUE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				if (j >= 6) {
+					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
+				}
+			}
+			j = 0;
+			if(tabTerritoire[i].getNomRegion() == "EUROPE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				if (j >= 7) {
+					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
+				}
+			}
+			j = 0;
+			if(tabTerritoire[i].getNomRegion() == "ASIE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				if (j >= 12) {
+					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
+				}
+			}
+			j = 0;
+			if(tabTerritoire[i].getNomRegion() == "AUSTRALIE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				if (j >= 4) {
+					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
+				}
 			}
 		}
-		return nbRegionJoueur;
+		return nomsRegionJoueur;
 	}
 		
 
