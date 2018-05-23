@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import edu.princeton.cs.introcs.StdDraw;
 
 public class Soldat extends Unite{
 	
@@ -10,24 +6,13 @@ public class Soldat extends Unite{
 	int prioriteATT = 2;
 	int prioriteDEF = 1;
 	int mvtParTour = 2;
-	String source = "./src/Territoire.txt";
-
 	
-	public Soldat(int nombreUnites, int idJoueur, Double xx, Double yy) {
+	public Soldat(int nombreUnites, int idJoueur, Double x, Double y) {
 		super(nombreUnites, idJoueur);
-		if(nombreUnites >= this.cout) {
-			this.affichagePion(idJoueur);
-		}else {
-			System.out.println("Erreur !");
-		}
 	}
 
 	public static int getCout() {
 		return cout;
-	}
-
-	public void setCout(int cout) {
-		this.cout = cout;
 	}
 
 	public int getPuissance() {
@@ -60,35 +45,6 @@ public class Soldat extends Unite{
 
 	public void setMvtParTour(int mvtParTour) {
 		this.mvtParTour = mvtParTour;
-	}
-	
-	public boolean affichagePion(int idJoueur) {
-		int i = 0;
-		while(i <= 1) {
-			if(StdDraw.mousePressed()){
-				Double xx=StdDraw.mouseX();
-				Double yy=StdDraw.mouseY();
-				try {
-					String ligne ;
-					BufferedReader fichier = new BufferedReader(new FileReader(source));
-					while ((ligne = fichier.readLine()) != null) {
-						String values[]= ligne.split(" ");
-						int x = Integer.parseInt(values[3]);
-						int y = Integer.parseInt(values[4]);
-						if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
-							StdDraw.picture(x+0.32, y-0.20, "./src/images/RISK_soldat_jeton"+idJoueur+".png", 0.30, 0.5);
-							i++;
-							return true;
-						}
-					}
-					fichier.close();
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return false;
 	}
 
 }

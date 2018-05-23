@@ -1,4 +1,8 @@
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import edu.princeton.cs.introcs.StdDraw;
@@ -8,6 +12,7 @@ public class Jeu {
 	int nbJoueur;
 	Joueur[] tabJoueur;
 	Unite[] tabUnite;
+	ArrayList pionListe = new ArrayList();
 	Map map;
 	
 	public Jeu() {
@@ -25,7 +30,7 @@ public class Jeu {
 	
 	
 	
-//affichage page mun, initialisation de la partie
+//affichage page menu, initialisation de la partie
 	
 	public void MenuInititialisationPartie() {
 		Menu menu = new Menu();
@@ -42,7 +47,7 @@ public class Jeu {
 	
 	
 	
-//mise à blanc de la fenêtre, affichage du logo et icon
+//mise à blanc de la fenêtre, affichage du logo, map et icon
 	
 	public void MapInitialisation() {
 		StdDraw.clear();
@@ -63,13 +68,174 @@ public class Jeu {
 		
 	public void TourDeJeu() {
 		for(int i = 0; i <= nbJoueur; i++ ) {
-			int j = i+1;
-			AffichageIdJoueur(j);
-			AffihageNbUniteJoueur(j);
-			JOptionPane.showMessageDialog(null, "Joueur "+j+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+			int numeroJoueur = i+1;
+			AffichageIdJoueur(numeroJoueur);
+			AffihageSoldeUniteJoueur(i);
+			JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+			StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
+			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(i);
-			tabUnite[i].positionnerPion(tabJoueur[i].getId());
-			System.out.println(tabUnite[i].getId()+" "+tabUnite[i].getNombre());
+			AffichagePions();
+			int j = 0;
+			while(tabUnite[i].getNombre() > 0 && j < 1) {
+				String typeUnite = SelectionTypeUnite(i);
+				if(typeUnite != "" && typeUnite != "fin tour") {
+					CreationPion(i, typeUnite);
+					map.AffichageMapJoueur(i);
+					AffichagePions();
+					AffihageSoldeUniteJoueur(i);
+					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
+				    for(int f = 0; f < pionListe.size(); f++)
+				    {
+				      System.out.println("ligne " + f + " : " + pionListe.get(f));
+				    } 
+				}
+				if(typeUnite == "fin tour") {
+					j++;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+//repère le type d'unité sélectionnée
+	
+	public String SelectionTypeUnite(int idJoueur) {
+		String typeUnite = "";
+		if(StdDraw.mousePressed()){
+			Double xx=StdDraw.mouseX();
+			Double yy=StdDraw.mouseY();
+			if(7.5 <= xx && xx <= 8.5 && 2.25 <= yy && yy <= 3.25) {
+				if(tabUnite[idJoueur].getNombre() >= Cavalier.getCout()) {
+					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon_selectionnee.png", 1, 1.5);
+					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
+					typeUnite = "cavalier";
+				}else {
+					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+			if(1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
+				if(tabUnite[idJoueur].getNombre() >= Soldat.getCout()) {
+					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon_selectionnee.png", 1, 1.5);
+					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
+					typeUnite = "soldat";
+				}else {
+					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn soldat en coute "+Soldat.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+			if(4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
+				if(tabUnite[idJoueur].getNombre() >= Canon.getCout()) {
+					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon_selectionnee.png", 1.5, 2);
+					typeUnite = "canon";
+				}else {
+					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn canon en coute "+Canon.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+			if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+				System.out.println("Fin tour");
+				return "fin tour";
+			}
+		}
+		return typeUnite;
+	}
+	
+	
+	
+	
+//creation d'un pion
+
+	public void CreationPion(int idJoueur, String typeUnite) {
+		int i = 0;
+		while(i < 1) {
+			if(StdDraw.mousePressed()){
+				Double xx=StdDraw.mouseX();
+				Double yy=StdDraw.mouseY();
+				for (int j = 0; j <= 41; j++) {
+					int x = map.tabTerritoire[j].getPosition_x();
+					int y = map.tabTerritoire[j].getPosition_y();
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
+						switch(typeUnite) {
+							case "cavalier" :
+								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+								System.out.println("cout "+Cavalier.getCout());
+								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
+								break;
+							case "soldat" :
+								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+								System.out.println("cout "+Soldat.getCout());
+								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
+								break;
+							case "canon" :
+								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+								System.out.println("cout "+Canon.getCout());
+								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
+								break;
+						}
+						System.out.println("a");
+						i++;
+					}//System.out.println("b");
+				}System.out.println("c");
+			}
+		}
+	}
+	
+	
+	
+	
+//affichage des pions présents sur la map
+	
+	public void AffichagePions() {
+		String ligne;
+		String ligne2;
+		StdDraw.setPenColor(StdDraw.BLACK);
+		for(int i = 0; i < pionListe.size(); i++) {
+			ligne = (String) pionListe.get(i);
+			String values[]= ligne.split(" ");
+			int idJoueur = Integer.parseInt(values[0]);
+			int x = Integer.parseInt(values[2]);
+			int y = Integer.parseInt(values[3]);
+			int k = 0;
+			for(int j = 0; j < pionListe.size(); j++) {
+				ligne2 = (String) pionListe.get(j);
+				if(ligne == ligne2) {
+					k = k+1;
+					System.out.println("nb soldat "+k);
+				}
+			}
+			switch(values[1]) {
+			case "cavalier" :
+				if(k >= 1) {
+					StdDraw.textLeft(x-0.38, y+0.20, ""+k);
+				}
+				StdDraw.picture(x-0.32, y-0.20, "./src/images/RISK_cavalier_jeton"+idJoueur+".png", 0.30, 0.5);
+				break;
+			case "soldat" :
+				if(k >= 1) {
+					StdDraw.textLeft(x+0.27, y+0.20, ""+k);
+				}
+				StdDraw.picture(x+0.32, y-0.20, "./src/images/RISK_soldat_jeton"+idJoueur+".png", 0.30, 0.5);
+				break;
+			case "canon" :
+				if(k >= 1) {
+					StdDraw.textLeft(x-0.05, y+0.20, ""+k);
+				}
+				StdDraw.picture(x, y-0.20, "./src/images/RISK_canon_jeton"+idJoueur+".png", 0.30, 0.5);
+				break;
+			}
 		}
 	}
 	
@@ -91,7 +257,7 @@ public class Jeu {
 
 //affichage solde d'unites du joueur 	
 	
-	public void AffihageNbUniteJoueur(int idJoueur) {
+	public void AffihageSoldeUniteJoueur(int idJoueur) {
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 		StdDraw.filledSquare(0.5, 15, 0.5);
 		StdDraw.filledSquare(1, 15, 0.5);

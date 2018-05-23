@@ -24,7 +24,7 @@ public class Map {
 		Random r = new Random();
 		int i = 0;
 		try {
-			String ligne ;
+			String ligne;
 			BufferedReader fichier = new BufferedReader(new FileReader("./src/Territoire.txt"));
 		while ((ligne = fichier.readLine()) != null) {
 			String values[]= ligne.split(" ");
@@ -32,7 +32,6 @@ public class Map {
 			int y = Integer.parseInt(values[4]);
 			int idJoueurAleatoire = 0 + r.nextInt(nbJoueur+1 - 0);
 			tabTerritoire[i] = new Territoire(values[5], values[0], values[6], values[1], idJoueurAleatoire, x, y, values[2]);
-			System.out.println("tab id "+i+" "+values[0]+values[1]);
 			i++;
 		}
 		fichier.close();
@@ -101,8 +100,6 @@ public class Map {
 //affichage map d'un joueur graphiquement
 	
 	public void AffichageMapJoueur(int idJoueur) {
-		StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
-		StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 		for (int i = 0; i <= 41; i++) {
 			if(tabTerritoire[i].getIdJoueur() == idJoueur) {
 				int x = tabTerritoire[i].getPosition_x();
