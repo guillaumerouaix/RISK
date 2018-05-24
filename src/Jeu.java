@@ -52,7 +52,7 @@ public class Jeu {
 		StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 		StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 		StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
-		StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_tour.png", 3, 1.5);
+		StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
 		map = new Map(nbJoueur);
 		map.AffichageMap();
 	}
@@ -67,24 +67,22 @@ public class Jeu {
 			int numeroJoueur = i+1;
 			AffichageIdJoueur(numeroJoueur);
 			AffihageSoldeUniteJoueur(i);
+			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
 			JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(i);
 			AffichagePions();
 			int j = 0;
+			JOptionPane.showMessageDialog(null, "Place tes armées sur la map !","Placement",JOptionPane.INFORMATION_MESSAGE);
 			while(tabUnite[i].getNombre() > 0 && j < 1) {
 				map.AffichageNomTerritoire();
 				String typeUnite = SelectionTypeUnite(i);
-				if(typeUnite != "" && typeUnite != "fin tour") {
-					CreationPion(i, typeUnite);
+				if(typeUnite != "" && typeUnite != "fin") {
+					CreationPion(i, typeUnite, "placement");
 					map.AffichageMapJoueur(i);
 					AffichagePions();
 					AffihageSoldeUniteJoueur(i);
-					JOptionPane.showMessageDialog(null, "pion deplacement"+" Déplacement","Info",JOptionPane.INFORMATION_MESSAGE);
-					DeplacementPion(i);
-					map.AffichageMapJoueur(i);
-					AffichagePions();
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
@@ -93,7 +91,25 @@ public class Jeu {
 				      System.out.println("ligne " + f + " : " + pionListe.get(f));
 				    } 
 				}
-				if(typeUnite == "fin tour") {
+				if(typeUnite == "fin") {
+					j++;
+				}
+			}
+			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
+			JOptionPane.showMessageDialog(null, "Attaque des territoires !","Attaque",JOptionPane.INFORMATION_MESSAGE);
+			while(j < 1) {
+				map.AffichageNomTerritoire();
+				String typeUnite = SelectionTypeUnite(i);
+				if(typeUnite != "" && typeUnite != "fin") {
+					DeplacementPion(i);
+					map.AffichageMapJoueur(i);
+					AffichagePions();
+				    for(int f = 0; f < pionListe.size(); f++)
+				    {
+				      System.out.println("ligne " + f + " : " + pionListe.get(f));
+				    } 
+				}
+				if(typeUnite == "fin") {
 					j++;
 				}
 			}
@@ -145,8 +161,7 @@ public class Jeu {
 			}
 			
 			if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-				System.out.println("Fin tour");
-				return "fin tour";
+				return "fin";
 			}
 		}
 		return typeUnite;
@@ -175,7 +190,7 @@ public class Jeu {
 						if(idJoueur2 == idJoueur) {
 							pionListe.remove(pionListe.get(i));
 							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							CreationPion(idJoueur, typeUnite);
+							CreationPion(idJoueur, typeUnite, "attaque");
 							j++;
 						}
 					}
@@ -189,7 +204,7 @@ public class Jeu {
 	
 //creation d'un pion
 
-	public void CreationPion(int idJoueur, String typeUnite) {
+	public void CreationPion(int idJoueur, String typeUnite, String typecrea) {
 		int i = 0;
 		while(i < 1) {
 			if(StdDraw.isMousePressed()){
@@ -199,7 +214,30 @@ public class Jeu {
 				for (int j = 0; j <= 41; j++) {
 					int x = map.tabTerritoire[j].getPosition_x();
 					int y = map.tabTerritoire[j].getPosition_y();
-					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25)) {
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() == idJoueur && typecrea == "placement") {
+						switch(typeUnite) {
+							case "cavalier" :
+								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+								System.out.println("cout "+Cavalier.getCout());
+								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
+								break;
+							case "soldat" :
+								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+								System.out.println("cout "+Soldat.getCout());
+								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
+								break;
+							case "canon" :
+								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+								System.out.println("cout "+Canon.getCout());
+								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
+								break;
+						}
+						i++;
+					}
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() != idJoueur && typecrea == "attaque") {
 						switch(typeUnite) {
 							case "cavalier" :
 								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
@@ -254,7 +292,7 @@ public class Jeu {
 				int y2 = Integer.parseInt(values2[3]);
 				if(idJoueur == idJoueur2 && x == x2 && y == y2 ) {
 					k++;
-					System.out.println("nb soldat "+k+" "+pionListe.size()+" "+ligne+" "+ligne2);
+//					System.out.println("nb soldat "+k+" "+pionListe.size()+" "+ligne+" "+ligne2);
 				}
 			}
 			switch(typePion) {
@@ -289,18 +327,19 @@ public class Jeu {
 		int renfort = 0;
 		int nbTerritoires = map.getNbTerritoireJoueur(idJoueur);
 		renfort = (int) Math.floor(nbTerritoires/3);
+		System.out.println("nb renfort "+renfort);
+		System.out.println("nb territoires "+nbTerritoires);
 		String Regions = map.getNomsRegionJoueur(idJoueur);
 		String values[]= Regions.split(" ");
 		int nbRegions = values.length;
-		if(nbRegions != 0) {
-			int j = 0;
-			while(j <= nbRegions) {
-				for(int i = 0; i < values.length; i++) {
+		System.out.println("nb regions "+nbRegions);
+		if(Regions != "") {
+				for(int i = 0; i < nbRegions; i++) {
 					renfort = renfort + (int) Math.floor(map.NbTerritoiresDansRegion(values[i])/2);
 				}
-			}
 		}
 		tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()+renfort);
+		System.out.println("Fin du tour du joueur "+idJoueur+", réception de "+renfort+" unités");
 		
 	}
 	

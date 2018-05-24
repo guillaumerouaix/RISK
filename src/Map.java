@@ -30,8 +30,10 @@ public class Map {
 			String values[]= ligne.split(" ");
 			int x = Integer.parseInt(values[3]);
 			int y = Integer.parseInt(values[4]);
+			int idRegion = Integer.parseInt(values[0]);
+			int idTerritoire = Integer.parseInt(values[1]);
 			int idJoueurAleatoire = 0 + r.nextInt(nbJoueur+1 - 0);
-			tabTerritoire[i] = new Territoire(values[5], values[0], values[6], values[1], idJoueurAleatoire, x, y, values[2]);
+			tabTerritoire[i] = new Territoire(values[5], idRegion, values[6], idTerritoire, idJoueurAleatoire, x, y, values[2]);
 			i++;
 		}
 		fichier.close();
@@ -62,40 +64,41 @@ public class Map {
 	
 	public String getNomsRegionJoueur(int idJoueur) {
 		String nomsRegionJoueur = "";
-		int j = 0;
+		int A = 0;	int B = 0;	int C = 0;	int D = 0;	int E = 0;	int F = 0;
 		for (int i = 0; i <= 41; i++) {
-			if(tabTerritoire[i].getNomRegion() == "AMERIQUE_DU_SUD" && tabTerritoire[i].getIdJoueur() == idJoueur) {
-				if (j >= 4) {
+			if(tabTerritoire[i].getIdRegion() == 1 && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				A++;
+				if (A >= 4) {
 					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
 				}
 			}
-			j = 0;
-			if(tabTerritoire[i].getNomRegion() == "AMERIQUE_DU_NORD" && tabTerritoire[i].getIdJoueur() == idJoueur) {
-				if (j >= 9) {
+			if(tabTerritoire[i].getIdRegion() == 2 && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				B++;
+				if (B >= 9) {
 					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
 				}
 			}
-			j = 0;
-			if(tabTerritoire[i].getNomRegion() == "AFRIQUE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
-				if (j >= 6) {
+			if(tabTerritoire[i].getIdRegion() == 3 && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				C++;
+				if (C >= 6) {
 					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
 				}
 			}
-			j = 0;
-			if(tabTerritoire[i].getNomRegion() == "EUROPE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
-				if (j >= 7) {
+			if(tabTerritoire[i].getIdRegion() == 4 && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				D++;
+				if (D >= 7) {
 					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
 				}
 			}
-			j = 0;
-			if(tabTerritoire[i].getNomRegion() == "ASIE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
-				if (j >= 12) {
+			if(tabTerritoire[i].getIdRegion() == 5 && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				E++;
+				if (E >= 12) {
 					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
 				}
 			}
-			j = 0;
-			if(tabTerritoire[i].getNomRegion() == "AUSTRALIE" && tabTerritoire[i].getIdJoueur() == idJoueur) {
-				if (j >= 4) {
+			if(tabTerritoire[i].getIdRegion() == 6 && tabTerritoire[i].getIdJoueur() == idJoueur) {
+				F++;
+				if (F >= 4) {
 					nomsRegionJoueur = tabTerritoire[i].getNomRegion()+" "+nomsRegionJoueur;
 				}
 			}

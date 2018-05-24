@@ -1,9 +1,9 @@
 
 public class Region {
 	String nom;
-	String id;
+	int id;
 	
-	public Region(String nomRegion, String idRegion) {
+	public Region(String nomRegion, int idRegion) {
 		nom = nomRegion;
 		id = idRegion;
 	}
@@ -12,7 +12,7 @@ public class Region {
 		return nom;
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	

@@ -1,13 +1,13 @@
 
 public class Territoire extends Region{
 	String nom;
-	String num;
+	int num;
 	int idJoueur;
 	int position_x;
 	int position_y;
 	String couleur;
 	
-	public Territoire(String nomRegion, String idRegion, String nomTerritoire, String numTerritoire, int idjoueur, int x, int y, String couleurTerritoire) {
+	public Territoire(String nomRegion, int idRegion, String nomTerritoire, int numTerritoire, int idjoueur, int x, int y, String couleurTerritoire) {
 		super(nomRegion, idRegion);
 		nom = nomTerritoire;
 		num = numTerritoire;
@@ -22,7 +22,7 @@ public class Territoire extends Region{
 		return super.nom;
 	}
 	
-	public String getIdRegion() {
+	public int getIdRegion() {
 		return super.id;
 	}
 	
@@ -30,7 +30,7 @@ public class Territoire extends Region{
 		return nom;
 	}
 
-	public String getNum() {
+	public int getNum() {
 		return num;
 	}
 
