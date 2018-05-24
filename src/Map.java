@@ -187,7 +187,7 @@ public class Map {
 //affichage nom territoire graphiquement
 		
 	public void AffichageNomTerritoire() {
-		if(StdDraw.mousePressed()){
+		if(StdDraw.isMousePressed()){
 			Double xx=StdDraw.mouseX();
 			Double yy=StdDraw.mouseY();
 			for (int i = 0; i <= 41; i++) {

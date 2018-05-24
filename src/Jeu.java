@@ -1,10 +1,6 @@
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Jeu {
@@ -85,6 +81,10 @@ public class Jeu {
 					map.AffichageMapJoueur(i);
 					AffichagePions();
 					AffihageSoldeUniteJoueur(i);
+					JOptionPane.showMessageDialog(null, "pion deplacement"+" Déplacement","Info",JOptionPane.INFORMATION_MESSAGE);
+					DeplacementPion(i);
+					map.AffichageMapJoueur(i);
+					AffichagePions();
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
@@ -107,7 +107,7 @@ public class Jeu {
 	
 	public String SelectionTypeUnite(int idJoueur) {
 		String typeUnite = "";
-		if(StdDraw.mousePressed()){
+		if(StdDraw.isMousePressed()){
 			Double xx=StdDraw.mouseX();
 			Double yy=StdDraw.mouseY();
 			if(7.5 <= xx && xx <= 8.5 && 2.25 <= yy && yy <= 3.25) {
@@ -154,12 +154,44 @@ public class Jeu {
 	
 	
 	
+//déplacement d'un pion lors d'une attaque
+	
+	public void DeplacementPion(int idJoueur) {
+		String ligne;
+		int j = 0;
+		while(j < 1) {
+			if(StdDraw.isMousePressed()){
+				Double xx=StdDraw.mouseX();
+				Double yy=StdDraw.mouseY();
+				for(int i = 0; i < pionListe.size(); i++) {
+					ligne = (String) pionListe.get(i);
+					String values[]= ligne.split(" ");
+					int idJoueur2 = Integer.parseInt(values[0]);
+					String typeUnite = values[1];
+					int x = Integer.parseInt(values[2]);
+					int y = Integer.parseInt(values[3]);
+					if(x-0.32-0.15 <= xx && xx <= x-0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+						if(idJoueur2 == idJoueur) {
+							pionListe.remove(pionListe.get(i));
+							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+							CreationPion(idJoueur, typeUnite);
+							j++;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	
+	
 //creation d'un pion
 
 	public void CreationPion(int idJoueur, String typeUnite) {
 		int i = 0;
 		while(i < 1) {
-			if(StdDraw.mousePressed()){
+			if(StdDraw.isMousePressed()){
 				map.AffichageNomTerritoire();
 				Double xx=StdDraw.mouseX();
 				Double yy=StdDraw.mouseY();
@@ -187,10 +219,9 @@ public class Jeu {
 								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
 								break;
 						}
-						System.out.println("a");
 						i++;
-					}//System.out.println("b");
-				}System.out.println("c");
+					}
+				}
 			}
 		}
 	}
@@ -220,7 +251,7 @@ public class Jeu {
 				String typePion2 = values2[1];
 				int x2 = Integer.parseInt(values2[2]);
 				int y2 = Integer.parseInt(values2[3]);
-				if(x == x2 && y == y2 && idJoueur == idJoueur2) {
+				if(idJoueur == idJoueur2 && x == x2 && y == y2 ) {
 					k++;
 					System.out.println("nb soldat "+k+" "+pionListe.size()+" "+ligne+" "+ligne2);
 				}

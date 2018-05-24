@@ -1,8 +1,3 @@
-import javax.print.attribute.standard.Finishings;
-import javax.swing.JOptionPane;
-import javax.xml.crypto.dsig.CanonicalizationMethod;
-
-import edu.princeton.cs.introcs.StdDraw;
 
 public class Unite {
 	

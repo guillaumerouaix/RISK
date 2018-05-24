@@ -42,7 +42,7 @@ public class Menu {
 	public int SelectionNbJoueur() {
 		int i=0;
 		while (i <= 1) {
-			if(StdDraw.mousePressed()){
+			if(StdDraw.isMousePressed()){
 				Double xx=StdDraw.mouseX();
 				Double yy=StdDraw.mouseY();
 				
