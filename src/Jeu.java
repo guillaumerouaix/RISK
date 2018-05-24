@@ -97,19 +97,17 @@ public class Jeu {
 			}
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
 			JOptionPane.showMessageDialog(null, "Attaque des territoires !","Attaque",JOptionPane.INFORMATION_MESSAGE);
+			String fin = "";
 			while(j < 1) {
 				map.AffichageNomTerritoire();
-				String typeUnite = SelectionTypeUnite(i);
-				if(typeUnite != "" && typeUnite != "fin") {
-					DeplacementPion(i);
-					map.AffichageMapJoueur(i);
-					AffichagePions();
-				    for(int f = 0; f < pionListe.size(); f++)
-				    {
-				      System.out.println("ligne " + f + " : " + pionListe.get(f));
-				    } 
+				fin = DeplacementPion(i);
+				StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
+				map.AffichageMapJoueur(i);
+				AffichagePions();
+				for(int f = 0; f < pionListe.size(); f++) {
+					System.out.println("ligne " + f + " : " + pionListe.get(f));
 				}
-				if(typeUnite == "fin") {
+				if(fin == "fin") {
 					j++;
 				}
 			}
@@ -172,7 +170,7 @@ public class Jeu {
 	
 //déplacement d'un pion lors d'une attaque
 	
-	public void DeplacementPion(int idJoueur) {
+	public String DeplacementPion(int idJoueur) {
 		String ligne;
 		int j = 0;
 		while(j < 1) {
@@ -194,9 +192,30 @@ public class Jeu {
 							j++;
 						}
 					}
+					if(x+0.32-0.15 <= xx && xx <= x+0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+						if(idJoueur2 == idJoueur) {
+							pionListe.remove(pionListe.get(i));
+							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+							CreationPion(idJoueur, typeUnite, "attaque");
+							j++;
+						}
+					}
+					if(x-0.15 <= xx && xx <= x+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+						if(idJoueur2 == idJoueur) {
+							pionListe.remove(pionListe.get(i));
+							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+							CreationPion(idJoueur, typeUnite, "attaque");
+							j++;
+						}
+					}
+					if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+						j++;
+						return "fin";
+					}
 				}
 			}
 		}
+		return "";
 	}
 	
 	
