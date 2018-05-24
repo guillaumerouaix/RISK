@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.JOptionPane;
 import edu.princeton.cs.introcs.StdDraw;
 
@@ -8,6 +10,7 @@ public class Jeu {
 	int nbJoueur;
 	Joueur[] tabJoueur;
 	Unite[] tabUnite;
+	Mission[] tabMission = new Mission[6];;
 	ArrayList pionListe = new ArrayList();
 	Map map;
 	
@@ -16,6 +19,8 @@ public class Jeu {
 		MenuInititialisationPartie();
 		
 		MapInitialisation();
+		
+		AffectationMission();
 		
 		for(int e = 0; e <= 3; e++ ) {
 			TourDeJeu();
@@ -68,7 +73,7 @@ public class Jeu {
 			AffichageIdJoueur(numeroJoueur);
 			AffihageSoldeUniteJoueur(i);
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
-			JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" à toi de jouer ! \n Il te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" à toi de jouer ! \nIl te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(i);
@@ -360,6 +365,25 @@ public class Jeu {
 		tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()+renfort);
 		System.out.println("Fin du tour du joueur "+idJoueur+", réception de "+renfort+" unités");
 		
+	}
+	
+	
+	
+	
+//affectation des missions aux joueurs
+	
+	public void AffectationMission() {
+		int j = 0;
+		for(int i = 0; i <= nbJoueur; i++ ) {
+			Random r = new Random();
+			int idMission =  1 + r.nextInt(8+1 - 1);
+			System.out.println("a");
+			tabMission[i] = new Mission(i, idMission);
+			System.out.println("b");
+			j = i+1;
+			JOptionPane.showMessageDialog(null, "Attention ! \nJoueur "+j+", ta mission va être dévoilée, seul toi dois la connaitre.","Mission",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Joueur "+j+", voici ta mission : \n"+tabMission[i].getMission(idMission),"Mission",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	
 	
