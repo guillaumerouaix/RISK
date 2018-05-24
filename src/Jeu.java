@@ -97,6 +97,7 @@ public class Jeu {
 					j++;
 				}
 			}
+			ReceptionRenfort(i);
 		}
 	}
 	
@@ -282,6 +283,30 @@ public class Jeu {
 	
 	
 	
+//rajout d'unites a la fin d'un tour
+	
+	public void ReceptionRenfort(int idJoueur) {
+		int renfort = 0;
+		int nbTerritoires = map.getNbTerritoireJoueur(idJoueur);
+		renfort = (int) Math.floor(nbTerritoires/3);
+		String Regions = map.getNomsRegionJoueur(idJoueur);
+		String values[]= Regions.split(" ");
+		int nbRegions = values.length;
+		if(nbRegions != 0) {
+			int j = 0;
+			while(j <= nbRegions) {
+				for(int i = 0; i < values.length; i++) {
+					renfort = renfort + (int) Math.floor(map.NbTerritoiresDansRegion(values[i])/2);
+				}
+			}
+		}
+		tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()+renfort);
+		
+	}
+	
+	
+	
+	
 //affichage du numero du joueur qui doit jouer
 			
 	public void AffichageIdJoueur(int idJoueur) {
@@ -307,5 +332,5 @@ public class Jeu {
 	
 	
 	
-	
+		
 }

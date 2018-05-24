@@ -211,4 +211,19 @@ public class Map {
 	
 	
 	
+//recuperation du nb de territoires dans une region
+	
+	public int NbTerritoiresDansRegion(String nomRegion) {
+		int nbTerritoires = 0;
+		for (int i = 0; i <= 41; i++) {
+			if(tabTerritoire[i].getNomRegion() == nomRegion) {
+				nbTerritoires++;
+			}
+		}
+		return nbTerritoires;
+	}
+	
+	
+	
+	
 }
