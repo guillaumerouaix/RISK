@@ -80,35 +80,35 @@ public class Mission {
 		return null;
 	}
 	
-	public void DétruireLeJoueurX() {
+	public void detruireLeJoueurX() {
 	
 	}
 	
-	public void ConquérirTousLesTerritoires() {
+	public void conquerirTousLesTerritoires() {
 		
 	}
 	
-	public void Contrôler3RégionsEtAuMoins18Territoires() {
+	public void controler3RegionsEtAuMoins18Territoires() {
 		
 	}
 	
-	public void Contrôler18TerritoiresAvecAuMoins2Armées() {
+	public void controler18TerritoiresAvecAuMoins2Armees() {
 		
 	}
 	
-	public void Contrôler30Territoires() {
+	public void controler30Territoires() {
 		
 	}
 
-	public void Contrôler24Territoires() {
+	public void controler24Territoires() {
 		
 	}
 	
-	public void Contrôler21Territoires() {
+	public void controler21Territoires() {
 		
 	}
 	
-	public void ContrôlerLaPlusGrosseRégionEt1AutreRégion() {
+	public void controlerLaPlusGrosseRegionEt1AutreRegion() {
 		
 	}
 	
