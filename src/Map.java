@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Random;
 
 import edu.princeton.cs.introcs.StdDraw;
@@ -8,6 +9,7 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Map {
 	
 	Territoire [] tabTerritoire  = new Territoire[42];
+	ArrayList<Territoire> territoireListe = new ArrayList();
 
 	public Map(int nbJoueur) {
 		
@@ -43,6 +45,29 @@ public class Map {
 	}
 	
 	
+	
+	public void attributionTerritoire() {
+		ArrayList<Territoire> listeTemp = this.territoireListe;
+	}
+	
+	
+	public void listageTerritoire() {
+		try {
+			String ligne;
+			BufferedReader fichier = new BufferedReader(new FileReader("./src/Territoire.txt"));
+		while ((ligne = fichier.readLine()) != null) {
+			String values[]= ligne.split(" ");
+			int x = Integer.parseInt(values[3]);
+			int y = Integer.parseInt(values[4]);
+			int idRegion = Integer.parseInt(values[0]);
+			int idTerritoire = Integer.parseInt(values[1]);
+			territoireListe.add(new Territoire(values[5], idRegion, values[6], idTerritoire, 0, x, y, values[2]));
+		}
+		fichier.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 //récuperation du nb de territoires possédant un joueur
