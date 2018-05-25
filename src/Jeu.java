@@ -94,9 +94,9 @@ public class Jeu {
 		JOptionPane.showMessageDialog(null, "Place tes armées sur la map !","Placement",JOptionPane.INFORMATION_MESSAGE);
 		while(tabUnite[idJoueur].getNombre() > 0 && j < 1) {
 			map.AffichageNomTerritoire();
-			String typeUnite = SelectionTypeUnite(idJoueur);
+			String typeUnite = selectionTypeUnite(idJoueur);
 			if(typeUnite != "" && typeUnite != "fin") {
-				CreationPion(idJoueur, typeUnite, "placement");
+				recupPosition(idJoueur, typeUnite, "placement");
 				map.AffichageMapJoueur(idJoueur);
 				AffichagePions();
 				AffihageSoldeUniteJoueur(idJoueur);
@@ -121,7 +121,7 @@ public class Jeu {
 		String fin = "";
 		while(j < 1) {
 			map.AffichageNomTerritoire();
-			fin = DeplacementPion(idJoueur);
+			fin = deplacementPion(idJoueur);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(idJoueur);
 			AffichagePions();
@@ -138,7 +138,7 @@ public class Jeu {
 	
 //repère le type d'unité sélectionnée
 	
-	public String SelectionTypeUnite(int idJoueur) {
+	public String selectionTypeUnite(int idJoueur) {
 		String typeUnite = "";
 		if(StdDraw.isMousePressed()){
 			Double xx=StdDraw.mouseX();
@@ -153,7 +153,6 @@ public class Jeu {
 					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
 				if(tabUnite[idJoueur].getNombre() >= Soldat.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
@@ -164,7 +163,6 @@ public class Jeu {
 					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn soldat en coute "+Soldat.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
 				if(tabUnite[idJoueur].getNombre() >= Canon.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
@@ -175,7 +173,6 @@ public class Jeu {
 					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn canon en coute "+Canon.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
 				return "fin";
 			}
@@ -188,7 +185,7 @@ public class Jeu {
 	
 //déplacement d'un pion lors d'une attaque
 	
-	public String DeplacementPion(int idJoueur) {
+	public String deplacementPion(int idJoueur) {
 		String ligne;
 		int j = 0;
 		while(j < 1) {
@@ -206,7 +203,7 @@ public class Jeu {
 						if(idJoueur2 == idJoueur) {
 							pionListe.remove(pionListe.get(i));
 							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							CreationPion(idJoueur, typeUnite, "attaque");
+							recupPosition(idJoueur, typeUnite, "attaque");
 							j++;
 						}
 					}
@@ -214,7 +211,7 @@ public class Jeu {
 						if(idJoueur2 == idJoueur) {
 							pionListe.remove(pionListe.get(i));
 							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							CreationPion(idJoueur, typeUnite, "attaque");
+							recupPosition(idJoueur, typeUnite, "attaque");
 							j++;
 						}
 					}
@@ -222,7 +219,7 @@ public class Jeu {
 						if(idJoueur2 == idJoueur) {
 							pionListe.remove(pionListe.get(i));
 							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							CreationPion(idJoueur, typeUnite, "attaque");
+							recupPosition(idJoueur, typeUnite, "attaque");
 							j++;
 						}
 					}
@@ -237,11 +234,31 @@ public class Jeu {
 	}
 	
 	
-	
-	
 //creation d'un pion
 
-	public void CreationPion(int idJoueur, String typeUnite, String typecrea) {
+	public void creationPion(int idJoueur, String typeUnite, int x, int y) {
+		switch(typeUnite) {
+			case "cavalier" :
+				new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, x, y);
+				pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+				tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
+				break;
+			case "soldat" :
+				new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, x, y);
+				pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+				tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
+				break;
+			case "canon" :
+				new Canon(tabUnite[idJoueur].getNombre(), idJoueur, x, y);
+				pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+				tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
+				break;
+		}
+	}
+	
+	
+	
+	public void recupPosition(int idJoueur, String typeUnite, String typeCreation) {
 		int i = 0;
 		while(i < 1) {
 			if(StdDraw.isMousePressed()){
@@ -251,56 +268,84 @@ public class Jeu {
 				for (int j = 0; j <= 41; j++) {
 					int x = map.tabTerritoire[j].getPosition_x();
 					int y = map.tabTerritoire[j].getPosition_y();
-					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() == idJoueur && typecrea == "placement") {
-						switch(typeUnite) {
-							case "cavalier" :
-								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-								System.out.println("cout "+Cavalier.getCout());
-								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
-								break;
-							case "soldat" :
-								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-								System.out.println("cout "+Soldat.getCout());
-								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
-								break;
-							case "canon" :
-								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-								System.out.println("cout "+Canon.getCout());
-								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
-								break;
-						}
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() == idJoueur && typeCreation == "placement") {
+						 creationPion(idJoueur, typeUnite, x, y);
 						i++;
 					}
-					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() != idJoueur && typecrea == "attaque") {
-						switch(typeUnite) {
-							case "cavalier" :
-								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-								System.out.println("cout "+Cavalier.getCout());
-								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
-								break;
-							case "soldat" :
-								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-								System.out.println("cout "+Soldat.getCout());
-								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
-								break;
-							case "canon" :
-								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-								System.out.println("cout "+Canon.getCout());
-								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
-								break;
-						}
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() != idJoueur && typeCreation == "attaque") {
+						creationPion(idJoueur, typeUnite, x, y);
 						i++;
 					}
 				}
 			}
 		}
 	}
+	
+	
+	
+	
+//creation d'un pion
+
+//	public void CreationPion(int idJoueur, String typeUnite, String typecrea) {
+//		int i = 0;
+//		while(i < 1) {
+//			if(StdDraw.isMousePressed()){
+//				map.AffichageNomTerritoire();
+//				Double xx=StdDraw.mouseX();
+//				Double yy=StdDraw.mouseY();
+//				for (int j = 0; j <= 41; j++) {
+//					int x = map.tabTerritoire[j].getPosition_x();
+//					int y = map.tabTerritoire[j].getPosition_y();
+//					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() == idJoueur && typecrea == "placement") {
+//						switch(typeUnite) {
+//							case "cavalier" :
+//								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+//								System.out.println("cout "+Cavalier.getCout());
+//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
+//								break;
+//							case "soldat" :
+//								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+//								System.out.println("cout "+Soldat.getCout());
+//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
+//								break;
+//							case "canon" :
+//								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+//								System.out.println("cout "+Canon.getCout());
+//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
+//								break;
+//						}
+//						i++;
+//					}
+//					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() != idJoueur && typecrea == "attaque") {
+//						switch(typeUnite) {
+//							case "cavalier" :
+//								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+//								System.out.println("cout "+Cavalier.getCout());
+//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
+//								break;
+//							case "soldat" :
+//								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+//								System.out.println("cout "+Soldat.getCout());
+//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
+//								break;
+//							case "canon" :
+//								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
+//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
+//								System.out.println("cout "+Canon.getCout());
+//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
+//								break;
+//						}
+//						i++;
+//					}
+//				}
+//			}
+//		}
+//	}
 	
 	
 	
