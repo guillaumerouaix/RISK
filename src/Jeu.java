@@ -153,7 +153,6 @@ public class Jeu {
 					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
 				if(tabUnite[idJoueur].getNombre() >= Soldat.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
@@ -164,7 +163,6 @@ public class Jeu {
 					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn soldat en coute "+Soldat.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
 				if(tabUnite[idJoueur].getNombre() >= Canon.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
@@ -175,7 +173,6 @@ public class Jeu {
 					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn canon en coute "+Canon.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 			if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
 				return "fin";
 			}
