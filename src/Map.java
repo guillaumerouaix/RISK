@@ -14,13 +14,14 @@ public class Map {
 	public Map(int nbJoueur) {
 		
 		creationTerritoires(nbJoueur);
+                attributionTerritoire(nbJoueur);
 		
 	}
 	
 	
 	
 	
-//création des territoires 
+//crï¿½ation des territoires 
 	
 	public void creationTerritoires(int nbJoueur) {
 		Random r = new Random();
@@ -48,8 +49,14 @@ public class Map {
 	
 	public void attributionTerritoire(int nbJoueur) {
 		ArrayList<Territoire> listeTemp = this.territoireListe;
+                Random rand = new Random();
+                int nbTerJoueur = listeTemp.size()/nbJoueur;
 		for(int i = 0; i < nbJoueur; i++) {
-			
+			for(int j=0; j < nbTerJoueur; j ++){
+                            int nombreAleatoire = rand.nextInt(listeTemp.size() - 0 + 1) + 0;
+                            listeTemp.get(nombreAleatoire).setIdJoueur(i);
+                            listeTemp.remove(nombreAleatoire);
+                        }
 		}
 		
 	}
@@ -74,7 +81,7 @@ public class Map {
 	}
 	
 	
-//récuperation du nb de territoires possédant un joueur
+//rï¿½cuperation du nb de territoires possï¿½dant un joueur
 	
 	public int getNbTerritoireJoueur(int idJoueur) {
 		int nbTerritoireJoueur = 0;
@@ -89,7 +96,7 @@ public class Map {
 	
 	
 	
-//récuperation nom regions possédant un joueur
+//rï¿½cuperation nom regions possï¿½dant un joueur
 	
 	public String getNomsRegionJoueur(int idJoueur) {
 		String nomsRegionJoueur = "";

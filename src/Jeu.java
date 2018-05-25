@@ -16,14 +16,14 @@ public class Jeu {
 	
 	public Jeu() {
 		
-		menuInititialisationPartie();
+		MenuInititialisationPartie();
 		
-		mapInitialisation();
+		MapInitialisation();
 		
-		affectationMission();
+		AffectationMission();
 		
 		for(int e = 0; e <= 3; e++ ) {
-			tourDeJeu();
+			TourDeJeu();
 		}
 		
 	}
@@ -33,7 +33,7 @@ public class Jeu {
 	
 //affichage page menu, initialisation de la partie
 	
-	public void menuInititialisationPartie() {
+	public void MenuInititialisationPartie() {
 		Menu menu = new Menu();
 		nbJoueur = menu.SelectionNbJoueur();
 		tabJoueur = new Joueur[nbJoueur+1];
@@ -50,7 +50,7 @@ public class Jeu {
 	
 //mise à blanc de la fenêtre, affichage du logo, map et icon
 	
-	public void mapInitialisation() {
+	public void MapInitialisation() {
 		StdDraw.clear();
 		StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 		StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
@@ -65,9 +65,9 @@ public class Jeu {
 	
 	
 	
-//1 tour de jeu par joueur
+//lancement 1 tour de jeu par joueur
 		
-	public void tourDeJeu() {
+	public void TourDeJeu() {
 		for(int i = 0; i <= nbJoueur; i++ ) {
 			int numeroJoueur = i+1;
 			AffichageIdJoueur(numeroJoueur);
@@ -78,61 +78,48 @@ public class Jeu {
 			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(i);
 			AffichagePions();
-			placement(i);
+			int j = 0;
+			JOptionPane.showMessageDialog(null, "Place tes armées sur la map !","Placement",JOptionPane.INFORMATION_MESSAGE);
+			while(tabUnite[i].getNombre() > 0 && j < 1) {
+				map.AffichageNomTerritoire();
+				String typeUnite = SelectionTypeUnite(i);
+				if(typeUnite != "" && typeUnite != "fin") {
+					CreationPion(i, typeUnite, "placement");
+					map.AffichageMapJoueur(i);
+					AffichagePions();
+					AffihageSoldeUniteJoueur(i);
+					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
+				    for(int f = 0; f < pionListe.size(); f++)
+				    {
+				      System.out.println("ligne " + f + " : " + pionListe.get(f));
+				    } 
+				}
+				if(typeUnite == "fin") {
+					j++;
+				}
+			}
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
 			JOptionPane.showMessageDialog(null, "Attaque des territoires !","Attaque",JOptionPane.INFORMATION_MESSAGE);
-			attaque(i);
+			String fin = "";
+			while(j < 1) {
+				map.AffichageNomTerritoire();
+				fin = DeplacementPion(i);
+				StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
+				map.AffichageMapJoueur(i);
+				AffichagePions();
+				for(int f = 0; f < pionListe.size(); f++) {
+					System.out.println("ligne " + f + " : " + pionListe.get(f));
+				}
+				if(fin == "fin") {
+					j++;
+				}
+			}
 			ReceptionRenfort(i);
 		}
 	}
 	
-	
-	
-	
-	public void placement(int idJoueur) {
-		int j = 0;
-		JOptionPane.showMessageDialog(null, "Place tes armées sur la map !","Placement",JOptionPane.INFORMATION_MESSAGE);
-		while(tabUnite[idJoueur].getNombre() > 0 && j < 1) {
-			map.AffichageNomTerritoire();
-			String typeUnite = SelectionTypeUnite(idJoueur);
-			if(typeUnite != "" && typeUnite != "fin") {
-				CreationPion(idJoueur, typeUnite, "placement");
-				map.AffichageMapJoueur(idJoueur);
-				AffichagePions();
-				AffihageSoldeUniteJoueur(idJoueur);
-				StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
-				StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
-				StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
-			    for(int f = 0; f < pionListe.size(); f++)
-			    {
-			      System.out.println("ligne " + f + " : " + pionListe.get(f));
-			    } 
-			}
-			if(typeUnite == "fin") {
-				j++;
-			}
-		}
-	}
-	
-	
-	
-	public void attaque(int idJoueur) {
-		int j = 0;
-		String fin = "";
-		while(j < 1) {
-			map.AffichageNomTerritoire();
-			fin = DeplacementPion(idJoueur);
-			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
-			map.AffichageMapJoueur(idJoueur);
-			AffichagePions();
-			for(int f = 0; f < pionListe.size(); f++) {
-				System.out.println("ligne " + f + " : " + pionListe.get(f));
-			}
-			if(fin == "fin") {
-				j++;
-			}
-		}
-	}
 	
 	
 	
@@ -385,7 +372,7 @@ public class Jeu {
 	
 //affectation des missions aux joueurs
 	
-	public void affectationMission() {
+	public void AffectationMission() {
 		int j = 0;
 		for(int i = 0; i <= nbJoueur; i++ ) {
 			Random r = new Random();
