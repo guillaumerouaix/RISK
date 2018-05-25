@@ -46,8 +46,12 @@ public class Map {
 	
 	
 	
-	public void attributionTerritoire() {
+	public void attributionTerritoire(int nbJoueur) {
 		ArrayList<Territoire> listeTemp = this.territoireListe;
+		for(int i = 0; i < nbJoueur; i++) {
+			
+		}
+		
 	}
 	
 	
