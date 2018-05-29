@@ -10,7 +10,7 @@ public class Mission {
 		idJoueur = idjoueur;
 		Mission = idmission;
 		int joueur = 0;
-		while(joueur != idjoueur) {
+		while(joueur == idjoueur) {
 			Random r = new Random();
 			joueur =  1 + r.nextInt(8+1 - 1);
 			idJoueurDetruire = joueur;

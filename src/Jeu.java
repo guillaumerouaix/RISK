@@ -266,13 +266,13 @@ public class Jeu {
 				Double xx=StdDraw.mouseX();
 				Double yy=StdDraw.mouseY();
 				for (int j = 0; j <= 41; j++) {
-					int x = map.tabTerritoire[j].getPosition_x();
-					int y = map.tabTerritoire[j].getPosition_y();
-					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() == idJoueur && typeCreation == "placement") {
+					int x = map.territoireListe.get(j).getPosition_x();
+					int y = map.territoireListe.get(j).getPosition_y();
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.territoireListe.get(j).getIdJoueur() == idJoueur && typeCreation == "placement") {
 						 creationPion(idJoueur, typeUnite, x, y);
 						i++;
 					}
-					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() != idJoueur && typeCreation == "attaque") {
+					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.territoireListe.get(j).getIdJoueur() != idJoueur && typeCreation == "attaque") {
 						creationPion(idJoueur, typeUnite, x, y);
 						i++;
 					}
