@@ -9,7 +9,6 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Map {
 
-	Territoire[] tabTerritoire = new Territoire[42];
 	ArrayList<Territoire> territoireListe = new ArrayList<>();
 	ArrayList<Territoire> listeTemp = new ArrayList<>();
 

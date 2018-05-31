@@ -17,6 +17,14 @@ public class Mission {
 		}
 	}
 	
+	public int getIdJoueur() {
+		return idJoueur;
+	}
+
+	public int getMission() {
+		return Mission;
+	}
+
 	public String getMission(int idmission) {
 		String butMission = "";
 		int joueurDetruire = idJoueurDetruire+1;
@@ -43,73 +51,96 @@ public class Mission {
 			butMission = "Contrôler 21 territoires.";
 			break;
 		case 8 :
-			butMission = "Contrôler la plus grosse région et 1 autre région.";
+			butMission = "Contrôler la plus grosse région étant l'Asie et 1 autre région.";
 			break;
 	}
 		return butMission;
 	}
 
-	public  String VerifMission(int idJoueur, int idMission, int idJoueurDetruire) {
-		Random r = new Random();
-		switch( 1 + r.nextInt(8+1 - 1)) {
+	public  boolean VerifMission() {
+		switch(this.getMission()) {
 			case 1 :
-//				return "DétruireLeJoueurX";
+				return this.detruireLeJoueurX();
 				break;
 			case 2 :
-//				return "ConquérirTousLesTerritoires";
+				return this.conquerirTousLesTerritoires();
 				break;
 			case 3 :
-//				return "Contrôler3RégionsEtAuMoins18Territoires";
+				return this.controler3RegionsEtAuMoins18Territoires();
 				break;
 			case 4 :
-//				return "Contrôler18TerritoiresAvecAuMoins2Armées";
+				return this.controler18TerritoiresAvecAuMoins2Armees();
 				break;
 			case 5 :
-//				return "Contrôler30Territoires";
+				return this.controler30Territoires();
 				break;
 			case 6 :
-//				return "Contrôler24Territoires";
+				return this.controler24Territoires();
 				break;
 			case 7 :
-//				return "Contrôler21Territoires";
+				return this.controler21Territoires();
 				break;
 			case 8 :
-//				return "ContrôlerLaPlusGrosseRégionEt1AutreRégion";
+				return this.controlerLaPlusGrosseRegionEt1AutreRegion();
 				break;
 		}
-		return null;
+		return false;
 	}
 	
-	public void detruireLeJoueurX() {
-	
+	public boolean detruireLeJoueurX() {
+		return false;
 	}
 	
-	public void conquerirTousLesTerritoires() {
-		
+	public boolean conquerirTousLesTerritoires() {
+		if(map.getNbTerritoireJoueur(this.getIdJoueur()) >= 42) {
+			return true;
+		}
+		return false;
 	}
 	
-	public void controler3RegionsEtAuMoins18Territoires() {
-		
+	public boolean controler3RegionsEtAuMoins18Territoires() {
+		String values[] = map.getNomsRegionJoueur(this.getIdJoueur()).split(" ");
+		int nbRegion = values.length;
+		if(map.getNbTerritoireJoueur(this.getIdJoueur()) >= 18 && nbRegion >= 3) {
+			return true;
+		}
+		return false;
 	}
 	
-	public void controler18TerritoiresAvecAuMoins2Armees() {
-		
+	public boolean controler18TerritoiresAvecAuMoins2Armees() {
+		return false;
 	}
 	
-	public void controler30Territoires() {
-		
+	public boolean controler30Territoires() {
+		if(map.getNbTerritoireJoueur(this.getIdJoueur()) >= 30) {
+			return true;
+		}
+		return false;
 	}
 
-	public void controler24Territoires() {
-		
+	public boolean controler24Territoires() {
+		if(map.getNbTerritoireJoueur(this.getIdJoueur()) >= 24) {
+			return true;
+		}
+		return false;
 	}
 	
-	public void controler21Territoires() {
-		
+	public boolean controler21Territoires() {
+		if(map.getNbTerritoireJoueur(this.getIdJoueur()) >= 21) {
+			return true;
+		}
+		return false;
 	}
 	
-	public void controlerLaPlusGrosseRegionEt1AutreRegion() {
-		
+	public boolean controlerLaPlusGrosseRegionEt1AutreRegion() {
+		String values[] = map.getNomsRegionJoueur(this.getIdJoueur()).split(" ");
+		int nbRegion = values.length;
+		for(int i; i < nbRegion; i++) {
+			if(nbRegion >= 2 && values[i] == "ASIE") {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
