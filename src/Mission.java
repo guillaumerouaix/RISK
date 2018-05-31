@@ -27,7 +27,7 @@ public class Mission {
 
 	public String getMission(int idmission) {
 		String butMission = "";
-		int joueurDetruire = idJoueurDetruire+1;
+		int joueurDetruire = this.idJoueurDetruire+1;
 		switch(idmission) {
 		case 1 :
 			butMission = "Détruire le joueur "+joueurDetruire+".";

@@ -22,6 +22,8 @@ public class Jeu {
 		
 		affectationMission();
 		
+		premierTour();
+		
 		for(int e = 0; e <= 3; e++ ) {
 			tourDeJeu();
 		}
@@ -65,6 +67,24 @@ public class Jeu {
 	
 	
 	
+	public void premierTour() {
+			for(int i = 0; i <= nbJoueur; i++ ) {
+				int numeroJoueur = i+1;
+				AffichageIdJoueur(numeroJoueur);
+				AffihageSoldeUniteJoueur(i);
+				StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
+				JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" place tes armées sur tes territoires ! \nTu as "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+				StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
+				StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
+				map.AffichageMapJoueur(i);
+				AffichagePions();
+				placement(i);
+			}
+	}
+	
+	
+	
+	
 //1 tour de jeu par joueur
 		
 	public void tourDeJeu() {
@@ -78,6 +98,7 @@ public class Jeu {
 			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(i);
 			AffichagePions();
+			JOptionPane.showMessageDialog(null, "Place tes armées sur la map !","Placement",JOptionPane.INFORMATION_MESSAGE);
 			placement(i);
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
 			JOptionPane.showMessageDialog(null, "Attaque des territoires !","Attaque",JOptionPane.INFORMATION_MESSAGE);
@@ -91,7 +112,6 @@ public class Jeu {
 	
 	public void placement(int idJoueur) {
 		int j = 0;
-		JOptionPane.showMessageDialog(null, "Place tes armées sur la map !","Placement",JOptionPane.INFORMATION_MESSAGE);
 		while(tabUnite[idJoueur].getNombre() > 0 && j < 1) {
 			map.AffichageNomTerritoire();
 			String typeUnite = selectionTypeUnite(idJoueur);
@@ -442,6 +462,19 @@ public class Jeu {
 			JOptionPane.showMessageDialog(null, "Attention ! \nJoueur "+j+", ta mission va être dévoilée, seul toi dois la connaitre.","Mission",JOptionPane.INFORMATION_MESSAGE);
 			JOptionPane.showMessageDialog(null, "Joueur "+j+", voici ta mission : \n"+tabMission[i].getMission(idMission),"Mission",JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+	
+	
+	
+	public boolean verifMission() {
+		int i = 0;
+		while (i <= nbJoueur || ) {
+			if(tabMission[i].VerifMission() == true) {
+				StdDraw.picture(8.5, 9, "./src/images/RISK_winner.png", 14.75, 9.75);
+				JOptionPane.showMessageDialog(null, "Bravo Joueur \"+j+\" ! \nTu as accompli ta mission.","Winner",JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		return false;
 	}
 	
 	
