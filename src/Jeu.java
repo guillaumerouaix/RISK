@@ -79,6 +79,14 @@ public class Jeu {
 				StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
 				StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 				map.AffichageMapJoueur(i);
+				for (int j = 0; j <= 41; j++) {
+					int x = map.territoireListe.get(j).getPosition_x();
+					int y = map.territoireListe.get(j).getPosition_y();
+					if (map.territoireListe.get(j).getIdJoueur() == i) {
+						 creationPion(i, "soldat", x, y);
+					}
+				}
+				AffihageSoldeUniteJoueur(i);
 				AffichagePions();
 				placement(i);
 			}
@@ -104,7 +112,7 @@ public class Jeu {
 			placement(i);
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
 			JOptionPane.showMessageDialog(null, "Attaque des territoires !","Attaque",JOptionPane.INFORMATION_MESSAGE);
-//			attaque(i);
+			attaque(i);
 			ReceptionRenfort(i);
 		}
 	}
@@ -138,23 +146,23 @@ public class Jeu {
 	
 	
 	
-//	public void attaque(int idJoueur) {
-//		int j = 0;
-//		String fin = "";
-//		while(j < 1) {
-//			map.AffichageNomTerritoire();
-//			fin = deplacementPion(idJoueur);
-//			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
-//			map.AffichageMapJoueur(idJoueur);
-//			AffichagePions();
-//			for(int f = 0; f < pionListe.size(); f++) {
-//				System.out.println("ligne " + f + " : " + pionListe.get(f));
-//			}
-//			if(fin == "fin") {
-//				j++;
-//			}
-//		}
-//	}
+	public void attaque(int idJoueur) {
+		int j = 0;
+		String fin = "";
+		while(j < 1) {
+			map.AffichageNomTerritoire();
+			fin = deplacementPion(idJoueur);
+			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
+			map.AffichageMapJoueur(idJoueur);
+			AffichagePions();
+			for(int f = 0; f < pionListe.size(); f++) {
+				System.out.println("ligne " + f + " : " + pionListe.get(f));
+			}
+			if(fin == "fin") {
+				j++;
+			}
+		}
+	}
 	
 	
 	
@@ -207,53 +215,53 @@ public class Jeu {
 	
 //déplacement d'un pion lors d'une attaque
 	
-//	public String deplacementPion(int idJoueur) {
-//		String ligne;
-//		int j = 0;
-//		while(j < 1) {
-//			if(StdDraw.isMousePressed()){
-//				Double xx=StdDraw.mouseX();
-//				Double yy=StdDraw.mouseY();
-//				for(int i = 0; i < pionListe.size(); i++) {
-//					ligne = (String) pionListe.get(i);
-//					String values[]= ligne.split(" ");
-//					int idJoueur2 = Integer.parseInt(values[0]);
-//					String typeUnite = values[1];
-//					int x = Integer.parseInt(values[2]);
-//					int y = Integer.parseInt(values[3]);
-//					if(x-0.32-0.15 <= xx && xx <= x-0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
-//						if(idJoueur2 == idJoueur) {
-//							pionListe.remove(pionListe.get(i));
-//							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-//							recupPosition(idJoueur, typeUnite, "attaque");
-//							j++;
-//						}
-//					}
-//					if(x+0.32-0.15 <= xx && xx <= x+0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
-//						if(idJoueur2 == idJoueur) {
-//							pionListe.remove(pionListe.get(i));
-//							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-//							recupPosition(idJoueur, typeUnite, "attaque");
-//							j++;
-//						}
-//					}
-//					if(x-0.15 <= xx && xx <= x+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
-//						if(idJoueur2 == idJoueur) {
-//							pionListe.remove(pionListe.get(i));
-//							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-//							recupPosition(idJoueur, typeUnite, "attaque");
-//							j++;
-//						}
-//					}
-//					if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-//						j++;
-//						return "fin";
-//					}
-//				}
-//			}
-//		}
-//		return "";
-//	}
+	public String deplacementPion(int idJoueur) {
+		String ligne;
+		int j = 0;
+		while(j < 1) {
+			if(StdDraw.isMousePressed()){
+				Double xx=StdDraw.mouseX();
+				Double yy=StdDraw.mouseY();
+				for(int i = 0; i < pionListe.size(); i++) {
+					ligne = (String) pionListe.get(i);
+					String values[]= ligne.split(" ");
+					int idJoueur2 = Integer.parseInt(values[0]);
+					String typeUnite = values[1];
+					int x = Integer.parseInt(values[2]);
+					int y = Integer.parseInt(values[3]);
+					if(x-0.32-0.15 <= xx && xx <= x-0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+						if(idJoueur2 == idJoueur) {
+							pionListe.remove(pionListe.get(i));
+							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+							recupPosition(idJoueur, typeUnite, "attaque");
+							j++;
+						}
+					}
+					if(x+0.32-0.15 <= xx && xx <= x+0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+						if(idJoueur2 == idJoueur) {
+							pionListe.remove(pionListe.get(i));
+							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+							recupPosition(idJoueur, typeUnite, "attaque");
+							j++;
+						}
+					}
+					if(x-0.15 <= xx && xx <= x+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+						if(idJoueur2 == idJoueur) {
+							pionListe.remove(pionListe.get(i));
+							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+							recupPosition(idJoueur, typeUnite, "attaque");
+							j++;
+						}
+					}
+					if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+						j++;
+						return "fin";
+					}
+				}
+			}
+		}
+		return "";
+	}
 	
 	
 //creation d'un pion
@@ -396,7 +404,7 @@ public class Jeu {
 				int y2 = Integer.parseInt(values2[3]);
 				if(idJoueur == idJoueur2 && x == x2 && y == y2 ) {
 					k++;
-//					System.out.println("nb soldat "+k+" "+pionListe.size()+" "+ligne+" "+ligne2);
+					System.out.println("nb soldat "+k+" "+pionListe.size()+" "+ligne+" "+ligne2);
 				}
 			}
 			switch(typePion) {
