@@ -3,16 +3,17 @@ import java.util.Random;
 public class Mission {
 	
 	int idJoueur;
-	int Mission;
+	int idMission;
 	int idJoueurDetruire;
 	
-	public Mission(int idjoueur, int idmission) {
+	public Mission(int idjoueur) {
 		idJoueur = idjoueur;
-		Mission = idmission;
+		Random r = new Random();
+		idMission =  1 + r.nextInt(8+1 - 1);
 		int joueur = 0;
 		while(joueur == idjoueur) {
-			Random r = new Random();
-			joueur =  1 + r.nextInt(8+1 - 1);
+			Random r2 = new Random();
+			joueur =  1 + r2.nextInt(8+1 - 1);
 			idJoueurDetruire = joueur;
 		}
 	}
@@ -21,14 +22,14 @@ public class Mission {
 		return idJoueur;
 	}
 
-	public int getMission() {
-		return Mission;
+	public int getIdMission() {
+		return idMission;
 	}
 
-	public String getMission(int idmission) {
+	public String getMissionText() {
 		String butMission = "";
 		int joueurDetruire = this.idJoueurDetruire+1;
-		switch(idmission) {
+		switch(this.idMission) {
 		case 1 :
 			butMission = "Détruire le joueur "+joueurDetruire+".";
 			break;
@@ -58,7 +59,7 @@ public class Mission {
 	}
 
 	public  boolean VerifMission() {
-		switch(this.getMission()) {
+		switch(this.getIdMission()) {
 			case 1 :
 				return this.detruireLeJoueurX();
 				break;
@@ -88,6 +89,9 @@ public class Mission {
 	}
 	
 	public boolean detruireLeJoueurX() {
+		if(map.getNbTerritoireJoueur(idJoueurDetruire) == 0) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -108,6 +112,9 @@ public class Mission {
 	}
 	
 	public boolean controler18TerritoiresAvecAuMoins2Armees() {
+		if(map.getNbTerritoireJoueur(this.getIdJoueur()) >= 18) {
+			return true;
+		}
 		return false;
 	}
 	

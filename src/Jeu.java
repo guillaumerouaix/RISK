@@ -10,7 +10,7 @@ public class Jeu {
 	int nbJoueur;
 	Joueur[] tabJoueur;
 	Unite[] tabUnite;
-	Mission[] tabMission = new Mission[6];;
+	Mission[] tabMission = new Mission[6];
 	ArrayList pionListe = new ArrayList();
 	Map map;
 	
@@ -24,8 +24,10 @@ public class Jeu {
 		
 		premierTour();
 		
-		for(int e = 0; e <= 3; e++ ) {
+		boolean missionVerif = false;
+		while(missionVerif == false) {
 			tourDeJeu();
+			missionVerif = verifMission();
 		}
 		
 	}
@@ -102,7 +104,7 @@ public class Jeu {
 			placement(i);
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
 			JOptionPane.showMessageDialog(null, "Attaque des territoires !","Attaque",JOptionPane.INFORMATION_MESSAGE);
-			attaque(i);
+//			attaque(i);
 			ReceptionRenfort(i);
 		}
 	}
@@ -136,23 +138,23 @@ public class Jeu {
 	
 	
 	
-	public void attaque(int idJoueur) {
-		int j = 0;
-		String fin = "";
-		while(j < 1) {
-			map.AffichageNomTerritoire();
-			fin = deplacementPion(idJoueur);
-			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
-			map.AffichageMapJoueur(idJoueur);
-			AffichagePions();
-			for(int f = 0; f < pionListe.size(); f++) {
-				System.out.println("ligne " + f + " : " + pionListe.get(f));
-			}
-			if(fin == "fin") {
-				j++;
-			}
-		}
-	}
+//	public void attaque(int idJoueur) {
+//		int j = 0;
+//		String fin = "";
+//		while(j < 1) {
+//			map.AffichageNomTerritoire();
+//			fin = deplacementPion(idJoueur);
+//			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
+//			map.AffichageMapJoueur(idJoueur);
+//			AffichagePions();
+//			for(int f = 0; f < pionListe.size(); f++) {
+//				System.out.println("ligne " + f + " : " + pionListe.get(f));
+//			}
+//			if(fin == "fin") {
+//				j++;
+//			}
+//		}
+//	}
 	
 	
 	
@@ -205,53 +207,53 @@ public class Jeu {
 	
 //déplacement d'un pion lors d'une attaque
 	
-	public String deplacementPion(int idJoueur) {
-		String ligne;
-		int j = 0;
-		while(j < 1) {
-			if(StdDraw.isMousePressed()){
-				Double xx=StdDraw.mouseX();
-				Double yy=StdDraw.mouseY();
-				for(int i = 0; i < pionListe.size(); i++) {
-					ligne = (String) pionListe.get(i);
-					String values[]= ligne.split(" ");
-					int idJoueur2 = Integer.parseInt(values[0]);
-					String typeUnite = values[1];
-					int x = Integer.parseInt(values[2]);
-					int y = Integer.parseInt(values[3]);
-					if(x-0.32-0.15 <= xx && xx <= x-0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
-						if(idJoueur2 == idJoueur) {
-							pionListe.remove(pionListe.get(i));
-							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							recupPosition(idJoueur, typeUnite, "attaque");
-							j++;
-						}
-					}
-					if(x+0.32-0.15 <= xx && xx <= x+0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
-						if(idJoueur2 == idJoueur) {
-							pionListe.remove(pionListe.get(i));
-							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							recupPosition(idJoueur, typeUnite, "attaque");
-							j++;
-						}
-					}
-					if(x-0.15 <= xx && xx <= x+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
-						if(idJoueur2 == idJoueur) {
-							pionListe.remove(pionListe.get(i));
-							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
-							recupPosition(idJoueur, typeUnite, "attaque");
-							j++;
-						}
-					}
-					if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-						j++;
-						return "fin";
-					}
-				}
-			}
-		}
-		return "";
-	}
+//	public String deplacementPion(int idJoueur) {
+//		String ligne;
+//		int j = 0;
+//		while(j < 1) {
+//			if(StdDraw.isMousePressed()){
+//				Double xx=StdDraw.mouseX();
+//				Double yy=StdDraw.mouseY();
+//				for(int i = 0; i < pionListe.size(); i++) {
+//					ligne = (String) pionListe.get(i);
+//					String values[]= ligne.split(" ");
+//					int idJoueur2 = Integer.parseInt(values[0]);
+//					String typeUnite = values[1];
+//					int x = Integer.parseInt(values[2]);
+//					int y = Integer.parseInt(values[3]);
+//					if(x-0.32-0.15 <= xx && xx <= x-0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+//						if(idJoueur2 == idJoueur) {
+//							pionListe.remove(pionListe.get(i));
+//							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+//							recupPosition(idJoueur, typeUnite, "attaque");
+//							j++;
+//						}
+//					}
+//					if(x+0.32-0.15 <= xx && xx <= x+0.32+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+//						if(idJoueur2 == idJoueur) {
+//							pionListe.remove(pionListe.get(i));
+//							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+//							recupPosition(idJoueur, typeUnite, "attaque");
+//							j++;
+//						}
+//					}
+//					if(x-0.15 <= xx && xx <= x+0.15 && y-0.2-0.25 <= yy && yy <= y-0.2+0.25) {
+//						if(idJoueur2 == idJoueur) {
+//							pionListe.remove(pionListe.get(i));
+//							JOptionPane.showMessageDialog(null, "Pion enleve","Déplacement",JOptionPane.INFORMATION_MESSAGE);
+//							recupPosition(idJoueur, typeUnite, "attaque");
+//							j++;
+//						}
+//					}
+//					if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+//						j++;
+//						return "fin";
+//					}
+//				}
+//			}
+//		}
+//		return "";
+//	}
 	
 	
 //creation d'un pion
@@ -453,14 +455,10 @@ public class Jeu {
 	public void affectationMission() {
 		int j = 0;
 		for(int i = 0; i <= nbJoueur; i++ ) {
-			Random r = new Random();
-			int idMission =  1 + r.nextInt(8+1 - 1);
-			System.out.println("a");
-			tabMission[i] = new Mission(i, idMission);
-			System.out.println("b");
+			tabMission[i] = new Mission(i);
 			j = i+1;
 			JOptionPane.showMessageDialog(null, "Attention ! \nJoueur "+j+", ta mission va être dévoilée, seul toi dois la connaitre.","Mission",JOptionPane.INFORMATION_MESSAGE);
-			JOptionPane.showMessageDialog(null, "Joueur "+j+", voici ta mission : \n"+tabMission[i].getMission(idMission),"Mission",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Joueur "+j+", voici ta mission : \n"+tabMission[i].getMissionText(),"Mission",JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
@@ -468,10 +466,18 @@ public class Jeu {
 	
 	public boolean verifMission() {
 		int i = 0;
-		while (i <= nbJoueur || ) {
-			if(tabMission[i].VerifMission() == true) {
-				StdDraw.picture(8.5, 9, "./src/images/RISK_winner.png", 14.75, 9.75);
-				JOptionPane.showMessageDialog(null, "Bravo Joueur \"+j+\" ! \nTu as accompli ta mission.","Winner",JOptionPane.INFORMATION_MESSAGE);
+		boolean mission = false;
+		while (i <= nbJoueur || mission == true) {
+			mission = tabMission[i].VerifMission();
+			if(mission == true) {
+				tabMission[i].VerifMission();
+				int idJoueur = tabMission[i].getIdJoueur() + 1;
+				String missionText = tabMission[i].getMissionText();
+				StdDraw.clear();
+				StdDraw.picture(9.1, 9, "./src/images/RISK_n1.png", 7, 9);
+				StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
+				JOptionPane.showMessageDialog(null, "Bravo Joueur "+idJoueur+" ! \nTu as accompli ta mission :\n"+missionText,"Winner",JOptionPane.INFORMATION_MESSAGE);
+				return true;
 			}
 		}
 		return false;
