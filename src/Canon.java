@@ -7,8 +7,8 @@ public class Canon extends Unite{
 	int prioriteDEF = 3;
 	int mvtParTour = 3;
 	
-	public Canon(int nombreUnites, int idJoueur, int x, int y) {
-		super(nombreUnites, idJoueur);
+	public Canon(int idJoueur, int x, int y) {
+		super(idJoueur);
 	}
 	
 	public static int getCout() {

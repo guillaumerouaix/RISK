@@ -7,8 +7,8 @@ public class Soldat extends Unite{
 	int prioriteDEF = 1;
 	int mvtParTour = 2;
 	
-	public Soldat(int nombreUnites, int idJoueur, int x, int y) {
-		super(nombreUnites, idJoueur);
+	public Soldat(int idJoueur, int x, int y) {
+		super(idJoueur);
 	}
 
 	public static int getCout() {

@@ -55,8 +55,7 @@ public class Map {
 				int y = Integer.parseInt(values[4]);
 				int idRegion = Integer.parseInt(values[0]);
 				int idTerritoire = Integer.parseInt(values[1]);
-				Territoire t = new Territoire(values[5], idRegion, values[6], idTerritoire, nombreAleatoire, x, y,
-						values[2]);
+				Territoire t = new Territoire(values[5], idRegion, values[6], idTerritoire, nombreAleatoire, x, y, values[2]);
 				territoireListe.add(t);
 				listeTemp.add(t);
 			}

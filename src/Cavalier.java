@@ -7,8 +7,8 @@ public class Cavalier extends Unite{
 	int prioriteDEF = 2;
 	int mvtParTour = 1;
 	
-	public Cavalier(int nombreUnites, int idJoueur, int x, int y) {
-		super(nombreUnites, idJoueur);
+	public Cavalier(int idJoueur, int x, int y) {
+		super(idJoueur);
 	}
 	
 	public static int getCout() {

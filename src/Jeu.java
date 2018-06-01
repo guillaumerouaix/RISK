@@ -8,9 +8,8 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Jeu {
 	
 	int nbJoueur;
-	Joueur[] tabJoueur;
-	Unite[] tabUnite;
-	Mission[] tabMission = new Mission[6];
+	ArrayList<Joueur> joueurListe = new ArrayList<>();
+	ArrayList<Mission> missionListe = new ArrayList<>();
 	ArrayList pionListe = new ArrayList();
 	Map map;
 	
@@ -40,12 +39,9 @@ public class Jeu {
 	public void menuInititialisationPartie() {
 		Menu menu = new Menu();
 		nbJoueur = menu.SelectionNbJoueur();
-		tabJoueur = new Joueur[nbJoueur+1];
-		tabUnite = new Unite[nbJoueur+1];
 		int[] armeeInit = {40, 40, 35, 30, 25, 20};
 		for(int i = 0; i <= nbJoueur; i++) {
-			tabJoueur[i] = new Joueur(i);
-			tabUnite[i] = new Unite(armeeInit[nbJoueur],tabJoueur[i].getId());
+			joueurListe.add(new Joueur(i, armeeInit[nbJoueur]));
 		}
 	}
 	
@@ -75,7 +71,7 @@ public class Jeu {
 				AffichageIdJoueur(numeroJoueur);
 				AffihageSoldeUniteJoueur(i);
 				StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
-				JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" place tes armées sur tes territoires ! \nTu as "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" place tes armées sur tes territoires ! \nTu as "+joueurListe.get(i).getSoldeUnite()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
 				StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
 				StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 				map.AffichageMapJoueur(i);
@@ -103,7 +99,7 @@ public class Jeu {
 			AffichageIdJoueur(numeroJoueur);
 			AffihageSoldeUniteJoueur(i);
 			StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
-			JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" à toi de jouer ! \nIl te reste "+tabUnite[i].getNombre()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Joueur "+numeroJoueur+" à toi de jouer ! \nIl te reste "+joueurListe.get(i).getSoldeUnite()+" unités.","Info",JOptionPane.INFORMATION_MESSAGE);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
 			StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
 			map.AffichageMapJoueur(i);
@@ -122,7 +118,7 @@ public class Jeu {
 	
 	public void placement(int idJoueur) {
 		int j = 0;
-		while(tabUnite[idJoueur].getNombre() > 0 && j < 1) {
+		while(joueurListe.get(idJoueur).getSoldeUnite() > 0 && j < 1) {
 			map.AffichageNomTerritoire();
 			String typeUnite = selectionTypeUnite(idJoueur);
 			if(typeUnite != "" && typeUnite != "fin") {
@@ -174,33 +170,33 @@ public class Jeu {
 			Double xx=StdDraw.mouseX();
 			Double yy=StdDraw.mouseY();
 			if(7.5 <= xx && xx <= 8.5 && 2.25 <= yy && yy <= 3.25) {
-				if(tabUnite[idJoueur].getNombre() >= Cavalier.getCout()) {
+				if(joueurListe.get(idJoueur).getSoldeUnite() >= Cavalier.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon_selectionnee.png", 1, 1.5);
 					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 					typeUnite = "cavalier";
 				}else {
-					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Vous n'avez que "+joueurListe.get(idJoueur).getSoldeUnite()+" unités !\nUn cavalier en coute "+Cavalier.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			if(1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
-				if(tabUnite[idJoueur].getNombre() >= Soldat.getCout()) {
+				if(joueurListe.get(idJoueur).getSoldeUnite() >= Soldat.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon_selectionnee.png", 1, 1.5);
 					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
 					typeUnite = "soldat";
 				}else {
-					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn soldat en coute "+Soldat.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Vous n'avez que "+joueurListe.get(idJoueur).getSoldeUnite()+" unités !\nUn soldat en coute "+Soldat.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			if(4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
-				if(tabUnite[idJoueur].getNombre() >= Canon.getCout()) {
+				if(joueurListe.get(idJoueur).getSoldeUnite() >= Canon.getCout()) {
 					StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
 					StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
 					StdDraw.picture(5, 3, "./src/images/RISK_canon_icon_selectionnee.png", 1.5, 2);
 					typeUnite = "canon";
 				}else {
-					JOptionPane.showMessageDialog(null, "Vous n'avez que "+tabUnite[idJoueur].getNombre()+" unités !\nUn canon en coute "+Canon.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Vous n'avez que "+joueurListe.get(idJoueur).getSoldeUnite()+" unités !\nUn canon en coute "+Canon.getCout()+".","Info",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			if(13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
@@ -269,19 +265,19 @@ public class Jeu {
 	public void creationPion(int idJoueur, String typeUnite, int x, int y) {
 		switch(typeUnite) {
 			case "cavalier" :
-				new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, x, y);
+				new Cavalier(idJoueur, x, y);
 				pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-				tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
+				joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite()-Cavalier.getCout());
 				break;
 			case "soldat" :
-				new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, x, y);
+				new Soldat(idJoueur, x, y);
 				pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-				tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
+				joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite()-Soldat.getCout());
 				break;
 			case "canon" :
-				new Canon(tabUnite[idJoueur].getNombre(), idJoueur, x, y);
+				new Canon(idJoueur, x, y);
 				pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-				tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
+				joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite()-Canon.getCout());
 				break;
 		}
 	}
@@ -450,7 +446,7 @@ public class Jeu {
 					renfort = renfort + (int) Math.floor(map.NbTerritoiresDansRegion(values[i])/2);
 				}
 		}
-		tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()+renfort);
+		joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite()+renfort);
 		System.out.println("Fin du tour du joueur "+idJoueur+", réception de "+renfort+" unités");
 		
 	}
@@ -463,10 +459,10 @@ public class Jeu {
 	public void affectationMission() {
 		int j = 0;
 		for(int i = 0; i <= nbJoueur; i++ ) {
-			tabMission[i] = new Mission(i);
+			missionListe.add(new Mission(i));
 			j = i+1;
 			JOptionPane.showMessageDialog(null, "Attention ! \nJoueur "+j+", ta mission va être dévoilée, seul toi dois la connaitre.","Mission",JOptionPane.INFORMATION_MESSAGE);
-			JOptionPane.showMessageDialog(null, "Joueur "+j+", voici ta mission : \n"+tabMission[i].getMissionText(),"Mission",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Joueur "+j+", voici ta mission : \n"+missionListe.get(i).getMissionText(),"Mission",JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
@@ -476,11 +472,11 @@ public class Jeu {
 		int i = 0;
 		boolean mission = false;
 		while (i <= nbJoueur || mission == true) {
-			mission = tabMission[i].VerifMission();
+			mission = missionListe.get(i).VerifMission();
 			if(mission == true) {
-				tabMission[i].VerifMission();
-				int idJoueur = tabMission[i].getIdJoueur() + 1;
-				String missionText = tabMission[i].getMissionText();
+				missionListe.get(i).VerifMission();
+				int idJoueur = missionListe.get(i).getIdJoueur() + 1;
+				String missionText = missionListe.get(i).getMissionText();
 				StdDraw.clear();
 				StdDraw.picture(9.1, 9, "./src/images/RISK_n1.png", 7, 9);
 				StdDraw.picture(9, 16, "./src/images/RISK_logo.jpg", 5, 2);
@@ -514,7 +510,7 @@ public class Jeu {
 		StdDraw.filledSquare(0.5, 15, 0.5);
 		StdDraw.filledSquare(1, 15, 0.5);
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.textLeft(0.5, 15, "Unité : "+tabUnite[idJoueur].getNombre());
+		StdDraw.textLeft(0.5, 15, "Unité : "+joueurListe.get(idJoueur).getSoldeUnite());
 	}
 	
 	
