@@ -101,6 +101,7 @@ public class Territoire extends Region {
     
     public void addUnite(Unite u){
         listUnite.add(u);
+        System.out.println("territoire : " + this.nom + " taille : " + listUnite.size() + " unite : " + u.getClass().getName());
     }
     
     public void removeUnite(Unite u){
