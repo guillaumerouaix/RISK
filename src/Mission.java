@@ -50,28 +50,28 @@ public class Mission {
         int joueurDetruire = this.idJoueurDetruire + 1;
         switch (this.idMission) {
             case 1:
-                butMission = "D�truire le joueur " + joueurDetruire + ".";
+                butMission = "Detruire le joueur " + joueurDetruire + ".";
                 break;
             case 2:
-                butMission = "Conqu�rir tous les territoires.";
+                butMission = "Conquerir tous les territoires.";
                 break;
             case 3:
-                butMission = "Contr�ler 3 r�gions et au moins 18 territoires.";
+                butMission = "Controler 3 regions et au moins 18 territoires.";
                 break;
             case 4:
-                butMission = "Contr�ler 18 territoires avec au moins 2 arm�es.";
+                butMission = "Controler 18 territoires avec au moins 2 armees.";
                 break;
             case 5:
-                butMission = "Contr�ler 30 territoires.";
+                butMission = "Controler 30 territoires.";
                 break;
             case 6:
-                butMission = "Contr�ler 24 territoires.";
+                butMission = "Controler 24 territoires.";
                 break;
             case 7:
-                butMission = "Contr�ler 21 territoires.";
+                butMission = "Controler 21 territoires.";
                 break;
             case 8:
-                butMission = "Contr�ler la plus grosse r�gion �tant l'Asie et 1 autre r�gion.";
+                butMission = "Controler la plus grosse region : l'Asie et 1 autre region.";
                 break;
         }
         return butMission;

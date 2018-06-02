@@ -60,7 +60,7 @@ public class Jeu {
             AffichageIdJoueur(numeroJoueur);
             AffihageSoldeUniteJoueur(i);
             StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
-            JOptionPane.showMessageDialog(null, "Joueur " + numeroJoueur + " place tes arm�es sur tes territoires ! \nTu as " + joueurListe.get(i).getSoldeUnite() + " unit�s.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Joueur " + numeroJoueur + " place tes armees sur tes territoires ! \nTu as " + joueurListe.get(i).getSoldeUnite() + " unites.", "Info", JOptionPane.INFORMATION_MESSAGE);
             StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
             StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
             map.AffichageMapJoueur(i);
@@ -72,7 +72,7 @@ public class Jeu {
                 }
             }
             AffihageSoldeUniteJoueur(i);
-            AffichagePions();
+            affichagePionList();
             placement(i);
         }
     }
@@ -84,12 +84,12 @@ public class Jeu {
             AffichageIdJoueur(numeroJoueur);
             AffihageSoldeUniteJoueur(i);
             StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_placement.png", 3, 1.5);
-            JOptionPane.showMessageDialog(null, "Joueur " + numeroJoueur + " � toi de jouer ! \nIl te reste " + joueurListe.get(i).getSoldeUnite() + " unit�s.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Joueur " + numeroJoueur + " A toi de jouer ! \nIl te reste " + joueurListe.get(i).getSoldeUnite() + " unites.", "Info", JOptionPane.INFORMATION_MESSAGE);
             StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
             StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
             map.AffichageMapJoueur(i);
-            AffichagePions();
-            JOptionPane.showMessageDialog(null, "Place tes arm�es sur la map !", "Placement", JOptionPane.INFORMATION_MESSAGE);
+            affichagePionList();
+            JOptionPane.showMessageDialog(null, "Place tes armees sur la map !", "Placement", JOptionPane.INFORMATION_MESSAGE);
             placement(i);
             StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
             JOptionPane.showMessageDialog(null, "Attaque des territoires !", "Attaque", JOptionPane.INFORMATION_MESSAGE);
@@ -106,7 +106,7 @@ public class Jeu {
             if (typeUnite != "" && typeUnite != "fin") {
                 recupPosition(idJoueur, typeUnite, "placement");
                 map.AffichageMapJoueur(idJoueur);
-                AffichagePions();
+                affichagePionList();
                 AffihageSoldeUniteJoueur(idJoueur);
                 StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
                 StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
@@ -129,7 +129,7 @@ public class Jeu {
             fin = deplacementPion(idJoueur);
             StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
             map.AffichageMapJoueur(idJoueur);
-            AffichagePions();
+            affichagePionList();
             for (int f = 0; f < pionListe.size(); f++) {
                 System.out.println("ligne " + f + " : " + pionListe.get(f));
             }
@@ -152,7 +152,7 @@ public class Jeu {
                     StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
                     typeUnite = "cavalier";
                 } else {
-                    JOptionPane.showMessageDialog(null, "Vous n'avez que " + joueurListe.get(idJoueur).getSoldeUnite() + " unit�s !\nUn cavalier en coute " + Cavalier.getCout() + ".", "Info", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Vous n'avez que " + joueurListe.get(idJoueur).getSoldeUnite() + " unites !\nUn cavalier en coute " + Cavalier.getCout() + ".", "Info", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if (1.5 <= xx && xx <= 2.5 && 2.25 <= yy && yy <= 3.25) {
@@ -162,7 +162,7 @@ public class Jeu {
                     StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
                     typeUnite = "soldat";
                 } else {
-                    JOptionPane.showMessageDialog(null, "Vous n'avez que " + joueurListe.get(idJoueur).getSoldeUnite() + " unit�s !\nUn soldat en coute " + Soldat.getCout() + ".", "Info", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Vous n'avez que " + joueurListe.get(idJoueur).getSoldeUnite() + " unites !\nUn soldat en coute " + Soldat.getCout() + ".", "Info", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if (4.25 <= xx && xx <= 5.75 && 2.25 <= yy && yy <= 3.25) {
@@ -172,7 +172,7 @@ public class Jeu {
                     StdDraw.picture(5, 3, "./src/images/RISK_canon_icon_selectionnee.png", 1.5, 2);
                     typeUnite = "canon";
                 } else {
-                    JOptionPane.showMessageDialog(null, "Vous n'avez que " + joueurListe.get(idJoueur).getSoldeUnite() + " unit�s !\nUn canon en coute " + Canon.getCout() + ".", "Info", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Vous n'avez que " + joueurListe.get(idJoueur).getSoldeUnite() + " unites !\nUn canon en coute " + Canon.getCout() + ".", "Info", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
@@ -200,7 +200,7 @@ public class Jeu {
                     if (x - 0.32 - 0.15 <= xx && xx <= x - 0.32 + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
                         if (idJoueur2 == idJoueur) {
                             pionListe.remove(pionListe.get(i));
-                            JOptionPane.showMessageDialog(null, "Pion enleve", "D�placement", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Pion enleve", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
                             recupPosition(idJoueur, typeUnite, "attaque");
                             j++;
                         }
@@ -208,7 +208,7 @@ public class Jeu {
                     if (x + 0.32 - 0.15 <= xx && xx <= x + 0.32 + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
                         if (idJoueur2 == idJoueur) {
                             pionListe.remove(pionListe.get(i));
-                            JOptionPane.showMessageDialog(null, "Pion enleve", "D�placement", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Pion enleve", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
                             recupPosition(idJoueur, typeUnite, "attaque");
                             j++;
                         }
@@ -216,7 +216,7 @@ public class Jeu {
                     if (x - 0.15 <= xx && xx <= x + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
                         if (idJoueur2 == idJoueur) {
                             pionListe.remove(pionListe.get(i));
-                            JOptionPane.showMessageDialog(null, "Pion enleve", "D�placement", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Pion enleve", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
                             recupPosition(idJoueur, typeUnite, "attaque");
                             j++;
                         }
@@ -235,6 +235,9 @@ public class Jeu {
     public void creationPion(int idJoueur, String typeUnite, int x, int y) {
         Territoire t;
         t = map.getTerritoireClicked(x, y);
+        if (t == null) {
+            return;
+        }
         switch (typeUnite) {
             case "cavalier":
                 Cavalier c = new Cavalier(idJoueur, x, y);
@@ -392,6 +395,27 @@ public class Jeu {
         }
     }
 
+    public void affichagePionList() {
+        System.out.println(map.territoireListe.size());
+        for (Territoire t : map.territoireListe) {
+            int cav = t.getNbCavalier();
+            int sol = t.getNbSoldat();
+            int can = t.getNbCanon();
+            if (cav >= 1) {
+                StdDraw.textLeft(t.getPosition_x() - 0.38, t.getPosition_y() + 0.20, "" + cav);
+                StdDraw.picture(t.getPosition_x() - 0.32, t.getPosition_y() - 0.20, "./src/images/RISK_cavalier_jeton" + t.getIdJoueur() + ".png", 0.30, 0.5);
+            }
+            if (sol >= 1) {
+                StdDraw.textLeft(t.getPosition_x() + 0.27, t.getPosition_y() + 0.20, "" + sol);
+                StdDraw.picture(t.getPosition_x() + 0.32, t.getPosition_y() - 0.20, "./src/images/RISK_soldat_jeton" + t.getIdJoueur() + ".png", 0.30, 0.5);
+            }
+            if (can >= 1) {
+                StdDraw.textLeft(t.getPosition_x() - 0.05, t.getPosition_y() + 0.20, "" + can);
+                StdDraw.picture(t.getPosition_x(), t.getPosition_y() - 0.20, "./src/images/RISK_canon_jeton" + t.getIdJoueur() + ".png", 0.30, 0.5);
+            }
+        }
+    }
+
 //rajout d'unites a la fin d'un tour
     public void ReceptionRenfort(int idJoueur) {
         int renfort = 0;
@@ -409,7 +433,7 @@ public class Jeu {
             }
         }
         joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite() + renfort);
-        System.out.println("Fin du tour du joueur " + idJoueur + ", r�ception de " + renfort + " unit�s");
+        System.out.println("Fin du tour du joueur " + idJoueur + ", reception de " + renfort + " unites");
 
     }
 
@@ -419,7 +443,7 @@ public class Jeu {
         for (int i = 0; i <= nbJoueur; i++) {
             missionListe.add(new Mission(i));
             j = i + 1;
-            JOptionPane.showMessageDialog(null, "Attention ! \nJoueur " + j + ", ta mission va �tre d�voil�e, seul toi dois la connaitre.", "Mission", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Attention ! \nJoueur " + j + ", ta mission va etre devoilee, seul toi dois la connaitre.", "Mission", JOptionPane.INFORMATION_MESSAGE);
             JOptionPane.showMessageDialog(null, "Joueur " + j + ", voici ta mission : \n" + missionListe.get(i).getMissionText(), "Mission", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -458,7 +482,7 @@ public class Jeu {
         StdDraw.filledSquare(0.5, 15, 0.5);
         StdDraw.filledSquare(1, 15, 0.5);
         StdDraw.setPenColor(StdDraw.WHITE);
-        StdDraw.textLeft(0.5, 15, "Unit� : " + joueurListe.get(idJoueur).getSoldeUnite());
+        StdDraw.textLeft(0.5, 15, "Unite : " + joueurListe.get(idJoueur).getSoldeUnite());
     }
 
 }
