@@ -125,9 +125,30 @@ public class Jeu {
      */
     public void placement(int idJoueur) {
         int j = 0;
-        while (joueurListe.get(idJoueur).getSoldeUnite() > 0 && j < 1) {
+        int valReturn = 0;
+        while (j < 1) {
             map.AffichageNomTerritoire();
-            deplacementPionPlacement(idJoueur);
+            while (joueurListe.get(idJoueur).getSoldeUnite() > 0) {
+                map.AffichageNomTerritoire();
+                String typeUnite = selectionTypeUnite(idJoueur);
+                if (typeUnite != "" && typeUnite != "fin") {
+                    recupPosition(idJoueur, typeUnite, "placement");
+                    map.AffichageMapJoueur(idJoueur);
+                    affichagePionList();
+                    AffihageSoldeUniteJoueur(idJoueur);
+                    StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+                    StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+                    StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
+                    for (int f = 0; f < pionListe.size(); f++) {
+                        System.out.println("ligne " + f + " : " + pionListe.get(f));
+                    }
+                }
+            }
+            while (valReturn == 0) {
+                valReturn = deplacementPionPlacement(idJoueur, valReturn);
+            }
+            j++;
+
             StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
             StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
             StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
@@ -195,13 +216,14 @@ public class Jeu {
         return typeUnite;
     }
 
-    public void deplacementPionPlacement(int idJoueur) {
+    public int deplacementPionPlacement(int idJoueur, int valReturn) {
         if (StdDraw.isMousePressed()) {
             wait(1);
             Double xx = StdDraw.mouseX();
             Double yy = StdDraw.mouseY();
             if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-                return;
+                System.out.println("fin");
+                return 1;
             }
             Territoire t = map.getTerritoireClicked(xx, yy);
             if (t != null && t.getIdJoueur() == idJoueur) {
@@ -214,9 +236,11 @@ public class Jeu {
                         Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     waitEtDeplace(t, u, idJoueur);
+                    return 0;
                 }
             }
         }
+        return 0;
     }
 
     public Unite getUniteTypeClicked(Double xx, Double yy, int x, int y, Territoire t) {
