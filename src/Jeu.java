@@ -221,16 +221,16 @@ public class Jeu {
 
     public Unite getUniteTypeClicked(Double xx, Double yy, int x, int y, Territoire t) {
         Unite u = null;
-        if (x - 0.32 - 0.15 <= xx && xx <= x - 0.32 + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
+        if ((x - 0.32 - 0.15) <= xx && xx <= (x - 0.32 + 0.15) && (y - 0.2 - 0.25) <= yy && yy <= (y - 0.2 + 0.25)) {
             //cavalier
             return t.getRandomCavalier();
         }
 
-        if (x + 0.32 - 0.15 <= xx && xx <= x + 0.32 + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
+        if ((x + 0.32 - 0.15) <= xx && xx <= (x + 0.32 + 0.15) && (y - 0.2 - 0.25) <= yy && yy <= (y - 0.2 + 0.25)) {
             //soldat
             return t.getRandomSoldat();
         }
-        if (x - 0.15 <= xx && xx <= x + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
+        if ((x - 0.15) <= xx && xx <= (x + 0.15) && (y - 0.2 - 0.25) <= yy && yy <= (y - 0.2 + 0.25)) {
             //canon
             return t.getRandomCanon();
         }
