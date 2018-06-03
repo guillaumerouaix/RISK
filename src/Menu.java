@@ -6,7 +6,7 @@ public class Menu {
 	public Menu() {
 		
 		//cr�ation fen�tre
-		StdDraw.setCanvasSize(1900, 950);
+		StdDraw.setCanvasSize(1400, 800);
 		StdDraw.setScale(0, 18);
 		
 		//affichage couverture jeu
