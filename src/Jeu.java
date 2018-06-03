@@ -21,6 +21,10 @@ public class Jeu {
 
         affectationMission();
 
+        for (int j = 0; j <= 41; j++) {
+            creationPion(map.territoireListe.get(j).getIdJoueur(), "soldat", map.territoireListe.get(j).getPosition_x(), map.territoireListe.get(j).getPosition_y());
+        }
+
         premierTour();
 
         boolean missionVerif = false;
@@ -64,13 +68,6 @@ public class Jeu {
             StdDraw.picture(8.5, 9, "./src/images/RISK_image_blanche.png", 14.75, 9.75);
             StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
             map.AffichageMapJoueur(i);
-            for (int j = 0; j <= 41; j++) {
-                int x = map.territoireListe.get(j).getPosition_x();
-                int y = map.territoireListe.get(j).getPosition_y();
-                if (map.territoireListe.get(j).getIdJoueur() == i) {
-                    creationPion(i, "soldat", x, y);
-                }
-            }
             AffihageSoldeUniteJoueur(i);
             affichagePionList();
             placement(i);
@@ -238,25 +235,27 @@ public class Jeu {
         if (t == null) {
             return;
         }
+        System.out.print("Creation pion :");
+        System.out.println(" id : " + t.getIdRegion() + " nom : " + t.getNom());
         switch (typeUnite) {
             case "cavalier":
                 Cavalier c = new Cavalier(idJoueur, x, y);
                 pionListe.add(idJoueur + " " + typeUnite + " " + x + " " + y);
                 joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite() - Cavalier.getCout());
-                map.territoireListe.get(t.getId()).addUnite(c);
+                map.territoireListe.get(t.getNum()).addUnite(c);
                 break;
             case "soldat":
                 Soldat s = new Soldat(idJoueur, x, y);
                 pionListe.add(idJoueur + " " + typeUnite + " " + x + " " + y);
                 joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite() - Soldat.getCout());
-                map.territoireListe.get(t.getId()).addUnite(s);
+                map.territoireListe.get(t.getNum()).addUnite(s);
 
                 break;
             case "canon":
                 Canon ca = new Canon(idJoueur, x, y);
                 pionListe.add(idJoueur + " " + typeUnite + " " + x + " " + y);
                 joueurListe.get(idJoueur).setSoldeUnite(joueurListe.get(idJoueur).getSoldeUnite() - Canon.getCout());
-                map.territoireListe.get(t.getId()).addUnite(ca);
+                map.territoireListe.get(t.getNum()).addUnite(ca);
 
                 break;
         }
