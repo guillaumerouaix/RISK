@@ -11,6 +11,7 @@ public class Territoire extends Region {
     private int position_y;
     private String couleur;
     private ArrayList<Unite> listUnite;
+    private ArrayList<Territoire> listVoisins;
 
     public Territoire(String nomRegion, int idRegion, String nomTerritoire, int numTerritoire, int idjoueur, int x, int y, String couleurTerritoire) {
         super(nomRegion, idRegion);
@@ -21,6 +22,7 @@ public class Territoire extends Region {
         position_y = y;
         couleur = couleurTerritoire;
         listUnite = new ArrayList<>();
+        listVoisins = new ArrayList<>();
 
     }
 
@@ -70,6 +72,22 @@ public class Territoire extends Region {
 
     public void setListUnite(ArrayList<Unite> listUnite) {
         this.listUnite = listUnite;
+    }
+
+    public ArrayList<Territoire> getListVoisins() {
+        return listVoisins;
+    }
+
+    public void setListVoisins(ArrayList<Territoire> listVoisins) {
+        this.listVoisins = listVoisins;
+    }
+    
+    public void addVoisin(Territoire t){
+        this.listVoisins.add(t);
+    }
+    
+    public void removeVoisin(Territoire t){
+        this.listVoisins.remove(t);
     }
     
     public int getNbSoldat(){

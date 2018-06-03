@@ -236,7 +236,7 @@ public class Jeu {
             return;
         }
         System.out.print("Creation pion :");
-        System.out.println(" id : " + t.getIdRegion() + " nom : " + t.getNom());
+        System.out.println(" id : " + t.getNum() + " nom : " + t.getNom());
         switch (typeUnite) {
             case "cavalier":
                 Cavalier c = new Cavalier(idJoueur, x, y);

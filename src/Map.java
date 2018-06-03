@@ -16,6 +16,7 @@ public class Map {
 
         listageTerritoire(nbJoueur);
         attributionTerritoire(nbJoueur);
+        findTerritoiresVoisins();
     }
 
     //// cr�ation des territoires
@@ -73,6 +74,60 @@ public class Map {
                 listeTemp.get(nombreAleatoire).setIdJoueur(i);
                 listeTemp.remove(nombreAleatoire);
             }
+        }
+    }
+    
+    public void findTerritoiresVoisins(){
+        for(Territoire t:territoireListe){
+            Territoire tmp = null;
+            // TERRITOIRE A GAUCHE 
+            tmp = getTerritoireClicked(t.getPosition_x() - 1, t.getPosition_y());
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            // TERRITOIRE GAUCHE BAS
+            tmp = getTerritoireClicked(t.getPosition_x() - 1, t.getPosition_y() - 1);
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            //TERRITOIRE GAUCHE HAUT
+            tmp = getTerritoireClicked(t.getPosition_x() -1 , t.getPosition_y() + 1);
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            // TERRITOIRE HAUT
+            tmp = getTerritoireClicked(t.getPosition_x(), t.getPosition_y() +1 );
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            //TERRITOIRE BAS
+            tmp = getTerritoireClicked(t.getPosition_x() , t.getPosition_y() -1);
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            //TERRITOIRE DROITE
+            tmp = getTerritoireClicked(t.getPosition_x() +1, t.getPosition_y());
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            //TERRITOIRE DROITE HAUT
+            tmp = getTerritoireClicked(t.getPosition_x() +1, t.getPosition_y() +1);
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }
+            //TERRITOIRE DROITE BAS
+            tmp = getTerritoireClicked(t.getPosition_x() +1, t.getPosition_y() -1);
+            if(tmp != null){
+                t.addVoisin(tmp);
+                tmp = null;
+            }   
         }
     }
 
