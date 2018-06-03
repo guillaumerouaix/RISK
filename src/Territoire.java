@@ -23,6 +23,7 @@ public class Territoire extends Region {
         couleur = couleurTerritoire;
         listUnite = new ArrayList<>();
         listVoisins = new ArrayList<>();
+        listVoisins.add(this);
 
     }
 
@@ -123,5 +124,32 @@ public class Territoire extends Region {
     
     public void removeUnite(Unite u){
         listUnite.remove(u);
+    }
+
+    public Unite getRandomCavalier() {
+        for(Unite u:listUnite){
+            if(u.getClass().getName() == "Cavalier"){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public Unite getRandomSoldat() {
+        for(Unite u:listUnite){
+            if(u.getClass().getName() == "Soldat"){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public Unite getRandomCanon() {
+        for(Unite u:listUnite){
+            if(u.getClass().getName() == "Canon"){
+                return u;
+            }
+        }
+        return null;
     }
 }

@@ -1,9 +1,13 @@
 
+import edu.princeton.cs.introcs.StdArrayIO;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
 import edu.princeton.cs.introcs.StdDraw;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Jeu {
 
@@ -95,6 +99,7 @@ public class Jeu {
         }
     }
 
+    /*
     public void placement(int idJoueur) {
         int j = 0;
         while (joueurListe.get(idJoueur).getSoldeUnite() > 0 && j < 1) {
@@ -115,6 +120,17 @@ public class Jeu {
             if (typeUnite == "fin") {
                 j++;
             }
+        }
+    }
+     */
+    public void placement(int idJoueur) {
+        int j = 0;
+        while (joueurListe.get(idJoueur).getSoldeUnite() > 0 && j < 1) {
+            map.AffichageNomTerritoire();
+            deplacementPionPlacement(idJoueur);
+            StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
+            StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
+            StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
         }
     }
 
@@ -179,7 +195,92 @@ public class Jeu {
         return typeUnite;
     }
 
-//d�placement d'un pion lors d'une attaque
+    public void deplacementPionPlacement(int idJoueur) {
+        if (StdDraw.isMousePressed()) {
+            wait(1);
+            Double xx = StdDraw.mouseX();
+            Double yy = StdDraw.mouseY();
+            if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+                return;
+            }
+            Territoire t = map.getTerritoireClicked(xx, yy);
+            if (t != null && t.getIdJoueur() == idJoueur) {
+                Unite u = getUniteTypeClicked(xx, yy, t.getPosition_x(), t.getPosition_y(), t);;
+                if (u != null) {
+                    System.out.println(u);
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    waitEtDeplace(t, u, idJoueur);
+                }
+            }
+        }
+    }
+
+    public Unite getUniteTypeClicked(Double xx, Double yy, int x, int y, Territoire t) {
+        Unite u = null;
+        if (x - 0.32 - 0.15 <= xx && xx <= x - 0.32 + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
+            //cavalier
+            return t.getRandomCavalier();
+        }
+
+        if (x + 0.32 - 0.15 <= xx && xx <= x + 0.32 + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
+            //soldat
+            return t.getRandomSoldat();
+        }
+        if (x - 0.15 <= xx && xx <= x + 0.15 && y - 0.2 - 0.25 <= yy && yy <= y - 0.2 + 0.25) {
+            //canon
+            return t.getRandomCanon();
+        }
+        return u;
+    }
+
+    public Territoire waitTerritoire(int idJoueur) {
+        Territoire t = null;
+        wait(1);
+        while (!StdDraw.isMousePressed()) {
+
+        }
+        if (StdDraw.isMousePressed()) {
+            wait(1);
+            Double xx = StdDraw.mouseX();
+            Double yy = StdDraw.mouseY();
+            t = map.getTerritoireClicked(xx, yy);
+            if (t != null && t.getIdJoueur() == idJoueur) {
+                return t;
+            }
+        }
+        return t;
+    }
+
+    private void deplacerPion(Territoire t, Territoire t2, Unite u, int idJoueur) {
+        if (!t.getListVoisins().contains(t2)) {
+            JOptionPane.showMessageDialog(null, "Territoire non voisin", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+            waitEtDeplace(t, u, idJoueur);
+        }
+        t2.addUnite(u);
+        t.removeUnite(u);
+        System.out.println("deplacement de : " + t.getNom() + " vers : " + t2.getNom());
+        map.AffichageMapJoueur(idJoueur);
+        affichagePionList();
+        AffihageSoldeUniteJoueur(idJoueur);
+    }
+
+    private void waitEtDeplace(Territoire t, Unite u, int idJoueur) {
+        JOptionPane.showMessageDialog(null, "Dans quel territoire voulez vous deplacer ce pion", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+        Territoire t2 = waitTerritoire(idJoueur);
+        if (t2 != null && t2.getIdJoueur() == idJoueur) {
+            deplacerPion(t, t2, u, idJoueur);
+            return;
+        } else {
+            JOptionPane.showMessageDialog(null, "Territoire non reconnu, veuillez reesayer", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+            waitEtDeplace(t, u, idJoueur);
+        }
+    }
+
+    //d�placement d'un pion lors d'une attaque
     public String deplacementPion(int idJoueur) {
         String ligne;
         int j = 0;
@@ -231,12 +332,10 @@ public class Jeu {
 //creation d'un pion
     public void creationPion(int idJoueur, String typeUnite, int x, int y) {
         Territoire t;
-        t = map.getTerritoireClicked(x, y);
+        t = map.getTerritoire(x, y);
         if (t == null) {
             return;
         }
-        System.out.print("Creation pion :");
-        System.out.println(" id : " + t.getNum() + " nom : " + t.getNom());
         switch (typeUnite) {
             case "cavalier":
                 Cavalier c = new Cavalier(idJoueur, x, y);
@@ -395,7 +494,7 @@ public class Jeu {
     }
 
     public void affichagePionList() {
-        System.out.println(map.territoireListe.size());
+        StdDraw.setPenColor(StdDraw.BLACK);
         for (Territoire t : map.territoireListe) {
             int cav = t.getNbCavalier();
             int sol = t.getNbSoldat();
@@ -484,4 +583,11 @@ public class Jeu {
         StdDraw.textLeft(0.5, 15, "Unite : " + joueurListe.get(idJoueur).getSoldeUnite());
     }
 
+    public void wait(int s) {
+        try {
+            TimeUnit.SECONDS.sleep(s);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

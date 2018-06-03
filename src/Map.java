@@ -81,49 +81,49 @@ public class Map {
         for(Territoire t:territoireListe){
             Territoire tmp = null;
             // TERRITOIRE A GAUCHE 
-            tmp = getTerritoireClicked(t.getPosition_x() - 1, t.getPosition_y());
+            tmp = getTerritoire(t.getPosition_x() - 1, t.getPosition_y());
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             // TERRITOIRE GAUCHE BAS
-            tmp = getTerritoireClicked(t.getPosition_x() - 1, t.getPosition_y() - 1);
+            tmp = getTerritoire(t.getPosition_x() - 1, t.getPosition_y() - 1);
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             //TERRITOIRE GAUCHE HAUT
-            tmp = getTerritoireClicked(t.getPosition_x() -1 , t.getPosition_y() + 1);
+            tmp = getTerritoire(t.getPosition_x() -1 , t.getPosition_y() + 1);
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             // TERRITOIRE HAUT
-            tmp = getTerritoireClicked(t.getPosition_x(), t.getPosition_y() +1 );
+            tmp = getTerritoire(t.getPosition_x(), t.getPosition_y() +1 );
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             //TERRITOIRE BAS
-            tmp = getTerritoireClicked(t.getPosition_x() , t.getPosition_y() -1);
+            tmp = getTerritoire(t.getPosition_x() , t.getPosition_y() -1);
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             //TERRITOIRE DROITE
-            tmp = getTerritoireClicked(t.getPosition_x() +1, t.getPosition_y());
+            tmp = getTerritoire(t.getPosition_x() +1, t.getPosition_y());
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             //TERRITOIRE DROITE HAUT
-            tmp = getTerritoireClicked(t.getPosition_x() +1, t.getPosition_y() +1);
+            tmp = getTerritoire(t.getPosition_x() +1, t.getPosition_y() +1);
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
             }
             //TERRITOIRE DROITE BAS
-            tmp = getTerritoireClicked(t.getPosition_x() +1, t.getPosition_y() -1);
+            tmp = getTerritoire(t.getPosition_x() +1, t.getPosition_y() -1);
             if(tmp != null){
                 t.addVoisin(tmp);
                 tmp = null;
@@ -357,7 +357,19 @@ public class Map {
         return nbTerritoires;
     }
 
-    public Territoire getTerritoireClicked(int xx, int yy) {
+    public Territoire getTerritoire(int xx, int yy) {
+        Territoire t = null;
+        for (int i = 0; i <= 41; i++) {
+            int x = territoireListe.get(i).getPosition_x();
+            int y = territoireListe.get(i).getPosition_y();
+            if ((x - 0.5) <= xx && xx <= (x + 0.5) && (y - 0.25) <= yy && yy <= (y + 0.25)) {
+                t = territoireListe.get(i);
+            }
+        }
+        return t;
+    }
+    
+    public Territoire getTerritoireClicked(Double xx, Double yy) {
         Territoire t = null;
         for (int i = 0; i <= 41; i++) {
             int x = territoireListe.get(i).getPosition_x();

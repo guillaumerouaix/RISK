@@ -5,8 +5,8 @@ public class Menu {
 	
 	public Menu() {
 		
-		//création fenêtre
-		StdDraw.setCanvasSize(1400, 800);
+		//crï¿½ation fenï¿½tre
+		StdDraw.setCanvasSize(1900, 950);
 		StdDraw.setScale(0, 18);
 		
 		//affichage couverture jeu
@@ -19,7 +19,7 @@ public class Menu {
 			e.printStackTrace();
 		}
 		
-		//mise à blanc de la fenêtre
+		//mise ï¿½ blanc de la fenï¿½tre
 		StdDraw.clear();
 		
 		//affichage graphique du menu
@@ -37,7 +37,7 @@ public class Menu {
 	
 	
 	
-//récupération de la selection du nombre de joueurs
+//rï¿½cupï¿½ration de la selection du nombre de joueurs
 	
 	public int SelectionNbJoueur() {
 		int i=0;
