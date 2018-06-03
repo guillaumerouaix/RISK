@@ -144,6 +144,7 @@ public class Jeu {
                     }
                 }
             }
+            JOptionPane.showMessageDialog(null, "Vous pouvez maintenant deplacer des troupes", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
             while (valReturn == 0) {
                 valReturn = deplacementPionPlacement(idJoueur, valReturn);
             }
@@ -234,6 +235,10 @@ public class Jeu {
                         TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    if (t.getListUnite().size() <= 1) {
+                        JOptionPane.showMessageDialog(null, "Pas assez d'unite sur le teritoire pour en deplacer", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+                        return 0;
                     }
                     waitEtDeplace(t, u, idJoueur);
                     return 0;
