@@ -94,7 +94,7 @@ public class Jeu {
             placement(i);
             StdDraw.picture(15, 3, "./src/images/RISK_boutton_fin_attaque.png", 3, 1.5);
             JOptionPane.showMessageDialog(null, "Attaque des territoires !", "Attaque", JOptionPane.INFORMATION_MESSAGE);
-            attaque(i);
+            phaseAttaque(i);
             ReceptionRenfort(i);
         }
     }
@@ -156,6 +156,7 @@ public class Jeu {
         }
     }
 
+    /*
     public void attaque(int idJoueur) {
         int j = 0;
         String fin = "";
@@ -172,6 +173,72 @@ public class Jeu {
                 j++;
             }
         }
+    }
+     */
+    public void phaseAttaque(int idJoueur) {
+        int j = 0;
+        int val = 0;
+        while (j < 1) {
+            attaque(idJoueur);
+        }
+    }
+
+    public void attaque(int idJoueur) {
+        map.AffichageNomTerritoire();
+        JOptionPane.showMessageDialog(null, "Selectionnez un territoire duquel attaquer", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+        Territoire t = null;
+        while (t == null) {
+            t = getTerritoireAttaque(idJoueur);
+        }
+        if (t != null && t.getListUnite().size() > 1) {
+            System.out.println(t.getNom());
+            JOptionPane.showMessageDialog(null, "Selectionnez un territoire à attaquer", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+            Territoire t2 = null;
+            while (t2 == null) {
+                t2 = getTerritoireAAttaquer(idJoueur);
+            }
+            if (t2 != null) {
+                System.out.println(t2.getNom());
+                int gagnant = t.attaquer(t2);
+                System.out.println("Gagnant de la bataille = Joueur " + gagnant);
+                JOptionPane.showMessageDialog(null, "Gagnant de la bataille = Joueur " + gagnant, "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+                map.AffichageMapJoueur(idJoueur);
+                affichagePionList();
+                AffihageSoldeUniteJoueur(idJoueur);
+            }
+        }
+    }
+
+    private Territoire getTerritoireAttaque(int idJoueur) {
+        if (StdDraw.isMousePressed()) {
+            wait(1);
+            Double xx = StdDraw.mouseX();
+            Double yy = StdDraw.mouseY();
+            if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+                return null;
+            }
+            Territoire t = map.getTerritoireClicked(xx, yy);
+            if (t != null && t.getIdJoueur() == idJoueur) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    private Territoire getTerritoireAAttaquer(int idJoueur) {
+        if (StdDraw.isMousePressed()) {
+            wait(1);
+            Double xx = StdDraw.mouseX();
+            Double yy = StdDraw.mouseY();
+            if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
+                return null;
+            }
+            Territoire t = map.getTerritoireClicked(xx, yy);
+            if (t != null && t.getIdJoueur() != idJoueur) {
+                return t;
+            }
+        }
+        return getTerritoireAttaque(idJoueur);
     }
 
 //rep�re le type d'unit� s�lectionn�e
@@ -223,7 +290,6 @@ public class Jeu {
             Double xx = StdDraw.mouseX();
             Double yy = StdDraw.mouseY();
             if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-                System.out.println("fin");
                 return 1;
             }
             Territoire t = map.getTerritoireClicked(xx, yy);

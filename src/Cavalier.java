@@ -1,50 +1,49 @@
 
-public class Cavalier extends Unite{
-	
-	static int cout = 7;
-	int puissance = 4;
-	int prioriteATT = 3;
-	int prioriteDEF = 2;
-	int mvtParTour = 1;
-	
-	public Cavalier(int idJoueur, int x, int y) {
-		super(idJoueur);
-	}
-	
-	public static int getCout() {
-		return cout;
-	}
+public class Cavalier extends Unite {
 
-	public int getPuissance() {
-		return puissance;
-	}
+    static int cout = 7;
+    int puissance = 4;
+    int prioriteATT = 3;
+    int prioriteDEF = 2;
+    int mvtParTour = 1;
 
-	public void setPuissance(int puissance) {
-		this.puissance = puissance;
-	}
+    public Cavalier(int idJoueur, int x, int y) {
+        super(idJoueur);
+    }
 
-	public int getPrioriteATT() {
-		return prioriteATT;
-	}
+    public static int getCout() {
+        return cout;
+    }
 
-	public void setPrioriteATT(int prioriteATT) {
-		this.prioriteATT = prioriteATT;
-	}
+    public int getPuissance() {
+        return puissance;
+    }
 
-	public int getPrioriteDEF() {
-		return prioriteDEF;
-	}
+    public void setPuissance(int puissance) {
+        this.puissance = puissance;
+    }
 
-	public void setPrioriteDEF(int prioriteDEF) {
-		this.prioriteDEF = prioriteDEF;
-	}
+    public int getPrioriteATT() {
+        return prioriteATT;
+    }
 
-	public int getMvtParTour() {
-		return mvtParTour;
-	}
+    public void setPrioriteATT(int prioriteATT) {
+        this.prioriteATT = prioriteATT;
+    }
 
-	public void setMvtParTour(int mvtParTour) {
-		this.mvtParTour = mvtParTour;
-	}
+    public int getPrioriteDEF() {
+        return prioriteDEF;
+    }
 
+    public void setPrioriteDEF(int prioriteDEF) {
+        this.prioriteDEF = prioriteDEF;
+    }
+
+    public int getMvtParTour() {
+        return mvtParTour;
+    }
+
+    public void setMvtParTour(int mvtParTour) {
+        this.mvtParTour = mvtParTour;
+    }
 }
