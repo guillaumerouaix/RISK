@@ -1,8 +1,9 @@
 
 public class Cavalier extends Unite {
 
-    static int cout = 7;
-    int puissance = 4;
+    static int cout = 3;
+    int puissanceMax = 7;
+    int puissanceMin = 2;
     int prioriteATT = 3;
     int prioriteDEF = 2;
     int mvtParTour = 1;
@@ -15,13 +16,23 @@ public class Cavalier extends Unite {
         return cout;
     }
 
-    public int getPuissance() {
-        return puissance;
+    public int getPuissanceMax() {
+        return puissanceMax;
     }
 
-    public void setPuissance(int puissance) {
-        this.puissance = puissance;
+    public void setPuissanceMax(int puissanceMax) {
+        this.puissanceMax = puissanceMax;
     }
+
+    public int getPuissanceMin() {
+        return puissanceMin;
+    }
+
+    public void setPuissanceMin(int puissanceMin) {
+        this.puissanceMin = puissanceMin;
+    }
+    
+    
 
     public int getPrioriteATT() {
         return prioriteATT;

@@ -3,6 +3,7 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Random;
 
 public class Territoire extends Region {
 
@@ -158,17 +159,27 @@ public class Territoire extends Region {
         return null;
     }
 
-    public int attaquer(Territoire t2) {
+    public int attaquer(Territoire t2, Map m) {
         this.orgaByAttaque();
         t2.orgaByDefense();
         ArrayList<Unite> l1 = new ArrayList<>(listUnite);
         ArrayList<Unite> l2 = new ArrayList<>(t2.getListUnite());
         for (Unite u : listUnite) {
+            System.out.println("puissMax : " + u.getPuissanceMax());
             for (Unite u2 : t2.getListUnite()) {
-                if (u.fight(u2)) {
+                Random r = new Random();
+                int puiss = r.nextInt((u.getPuissanceMax() - u.getPuissanceMin()) + 1) + u.getPuissanceMin();
+                int puiss2 = r.nextInt((u2.getPuissanceMax() - u2.getPuissanceMin()) + 1) + u2.getPuissanceMin();
+                System.out.println("puiss attaque : " + puiss);
+                System.out.println("puiss def : " + puiss2);
+
+                // if (u.fight(u2)) {
+                if (puiss > puiss2) {
+                    System.out.println("att gagne");
                     l2.remove(u2);
-                    break;
+                    continue;
                 } else {
+                    System.out.println("def gagne");
                     l1.remove(u);
                     break;
                 }
@@ -176,12 +187,17 @@ public class Territoire extends Region {
         }
         if (l1.size() > 1) {
             t2.setIdJoueur(idJoueur);
-            setListUnite(l1);
+            this.setListUnite(l1);
+            t2.setListUnite(new ArrayList<>());
+            t2.addUnite(new Soldat(idJoueur, 0, 0));
             return idJoueur;
         } else {
             setIdJoueur(t2.getIdJoueur());
-            listUnite = new ArrayList<>();
-            addUnite(new Soldat(t2.getIdJoueur(), 0, 0));
+            t2.setListUnite(l2);
+            this.setListUnite(new ArrayList<>());
+            this.addUnite(new Soldat(t2.getIdJoueur(), 0, 0));
+            System.out.println(this.idJoueur);
+            System.out.println(this.listUnite.size());
             return t2.getIdJoueur();
         }
     }

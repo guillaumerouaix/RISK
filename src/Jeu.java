@@ -115,9 +115,6 @@ public class Jeu {
                     StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
                     StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
                     StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
-                    for (int f = 0; f < pionListe.size(); f++) {
-                        System.out.println("ligne " + f + " : " + pionListe.get(f));
-                    }
                 }
             }
             JOptionPane.showMessageDialog(null, "Vous pouvez maintenant deplacer des troupes", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
@@ -156,9 +153,10 @@ public class Jeu {
             }
             if (t2 != null) {
                 System.out.println(t2.getNom());
-                int gagnant = t.attaquer(t2);
+                int gagnant = t.attaquer(t2, map);
                 System.out.println("Gagnant de la bataille = Joueur " + gagnant);
-                JOptionPane.showMessageDialog(null, "Gagnant de la bataille = Joueur " + gagnant, "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Gagnant de la bataille = Joueur " + (gagnant + 1), "Deplacement", JOptionPane.INFORMATION_MESSAGE);
+                StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
                 map.AffichageMapJoueur(idJoueur);
                 affichagePionList();
                 AffihageSoldeUniteJoueur(idJoueur);
@@ -434,7 +432,7 @@ public class Jeu {
             }
         }
     }
-    
+
 //affichage des pions pr�sents sur la map
     public void AffichagePions() {
         String ligne;

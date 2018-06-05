@@ -1,50 +1,61 @@
 
-public class Soldat extends Unite{
-	
-	static int cout = 1;
-	int puissance = 1;
-	int prioriteATT = 2;
-	int prioriteDEF = 1;
-	int mvtParTour = 2;
-	
-	public Soldat(int idJoueur, int x, int y) {
-		super(idJoueur);
-	}
+public class Soldat extends Unite {
 
-	public static int getCout() {
-		return cout;
-	}
+    static int cout = 1;
+    int puissanceMax = 6;
+    int puissanceMin = 1;
+    int prioriteATT = 2;
+    int prioriteDEF = 1;
+    int mvtParTour = 2;
 
-	public int getPuissance() {
-		return puissance;
-	}
+    public Soldat(int idJoueur, int x, int y) {
+        super(idJoueur);
+    }
 
-	public void setPuissance(int puissance) {
-		this.puissance = puissance;
-	}
+    public static int getCout() {
+        return cout;
+    }
 
-	public int getPrioriteATT() {
-		return prioriteATT;
-	}
+    public int getPuissanceMax() {
+        return puissanceMax;
+    }
 
-	public void setPrioriteATT(int prioriteATT) {
-		this.prioriteATT = prioriteATT;
-	}
+    public void setPuissanceMax(int puissance) {
+        this.puissanceMax = puissance;
+    }
 
-	public int getPrioriteDEF() {
-		return prioriteDEF;
-	}
+    public int getPuissanceMin() {
+        return puissanceMin;
+    }
 
-	public void setPrioriteDEF(int prioriteDEF) {
-		this.prioriteDEF = prioriteDEF;
-	}
+    public void setPuissanceMin(int puissanceMin) {
+        this.puissanceMin = puissanceMin;
+    }
+    
+    
 
-	public int getMvtParTour() {
-		return mvtParTour;
-	}
+    public int getPrioriteATT() {
+        return prioriteATT;
+    }
 
-	public void setMvtParTour(int mvtParTour) {
-		this.mvtParTour = mvtParTour;
-	}
+    public void setPrioriteATT(int prioriteATT) {
+        this.prioriteATT = prioriteATT;
+    }
+
+    public int getPrioriteDEF() {
+        return prioriteDEF;
+    }
+
+    public void setPrioriteDEF(int prioriteDEF) {
+        this.prioriteDEF = prioriteDEF;
+    }
+
+    public int getMvtParTour() {
+        return mvtParTour;
+    }
+
+    public void setMvtParTour(int mvtParTour) {
+        this.mvtParTour = mvtParTour;
+    }
 
 }

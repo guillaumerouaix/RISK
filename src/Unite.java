@@ -1,12 +1,12 @@
 
 import java.util.Random;
 
-
 public class Unite {
 
     int id;
     int cout;
-    int puissance;
+    int puissanceMax;
+    int puissanceMin;
     int prioriteATT;
     int prioriteDEF;
     int mvtParTour;
@@ -19,15 +19,24 @@ public class Unite {
         return id;
     }
 
-    public int getPuissance() {
-        return puissance;
+    public int getPuissanceMax() {
+        return puissanceMax;
     }
 
-    public void setPuissance(int puissance) {
-        this.puissance = puissance;
+    public void setPuissanceMax(int puissance) {
+        this.puissanceMax = puissance;
     }
 
+    public int getPuissanceMin() {
+        return puissanceMin;
+    }
+
+    public void setPuissanceMin(int puissanceMin) {
+        this.puissanceMin = puissanceMin;
+    }
     
+    
+
     public int getPrioriteATT() {
         return prioriteATT;
     }
@@ -43,25 +52,33 @@ public class Unite {
     public void setPrioriteDEF(int prioriteDEF) {
         this.prioriteDEF = prioriteDEF;
     }
-    
+
     public int compareToAttaque(Unite u) {
-        int compPriorite = ((Unite) u).getPrioriteATT();        
-        return compPriorite-this.prioriteATT;
+        int compPriorite = ((Unite) u).getPrioriteATT();
+        return compPriorite - this.prioriteATT;
     }
-    
+
     public int compareToDef(Unite u) {
-        int compPriorite = ((Unite) u).getPrioriteDEF();        
-        return compPriorite-this.prioriteDEF;
+        int compPriorite = ((Unite) u).getPrioriteDEF();
+        return compPriorite - this.prioriteDEF;
     }
 
     public Boolean fight(Unite u2) {
         Random r = new Random();
-        int puiss = 0 + r.nextInt(puissance + 1);
-        int puiss2 = 0 + r.nextInt(u2.getPuissance() + 1);
-        if(puiss > puiss2){
+        System.out.println(this.getClass().getName());
+        System.out.println(this.puissanceMax);
+        System.out.println(this.puissanceMin);
+        int puiss = r.nextInt((this.puissanceMax - this.puissanceMin) + 1) + this.puissanceMin;
+        System.out.println("puiss attaque : " + puiss);
+        int puiss2 = r.nextInt((u2.getPuissanceMax() - u2.getPuissanceMin()) + 1) + u2.getPuissanceMin();
+        System.out.println("puiss def : " + puiss2);
+        if (puiss > puiss2) {
+            System.out.println("att gagne");
             return true;
-        }else 
-            return false;
+        } else {
+            System.out.println("def gagne");
+        }
+        return false;
     }
 
 }
