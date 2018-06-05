@@ -167,10 +167,10 @@ public class Territoire extends Region {
             for (Unite u2 : t2.getListUnite()) {
                 if (u.fight(u2)) {
                     l2.remove(u2);
-                    continue;
+                    break;
                 } else {
                     l1.remove(u);
-                    continue;
+                    break;
                 }
             }
         }

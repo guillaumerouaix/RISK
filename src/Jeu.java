@@ -99,30 +99,6 @@ public class Jeu {
         }
     }
 
-    /*
-    public void placement(int idJoueur) {
-        int j = 0;
-        while (joueurListe.get(idJoueur).getSoldeUnite() > 0 && j < 1) {
-            map.AffichageNomTerritoire();
-            String typeUnite = selectionTypeUnite(idJoueur);
-            if (typeUnite != "" && typeUnite != "fin") {
-                recupPosition(idJoueur, typeUnite, "placement");
-                map.AffichageMapJoueur(idJoueur);
-                affichagePionList();
-                AffihageSoldeUniteJoueur(idJoueur);
-                StdDraw.picture(8, 3, "./src/images/RISK_cavalier_icon.png", 1, 1.5);
-                StdDraw.picture(2, 3, "./src/images/RISK_soldat_icon.png", 1, 1.5);
-                StdDraw.picture(5, 3, "./src/images/RISK_canon_icon.png", 1.5, 2);
-                for (int f = 0; f < pionListe.size(); f++) {
-                    System.out.println("ligne " + f + " : " + pionListe.get(f));
-                }
-            }
-            if (typeUnite == "fin") {
-                j++;
-            }
-        }
-    }
-     */
     public void placement(int idJoueur) {
         int j = 0;
         int valReturn = 0;
@@ -156,25 +132,6 @@ public class Jeu {
         }
     }
 
-    /*
-    public void attaque(int idJoueur) {
-        int j = 0;
-        String fin = "";
-        while (j < 1) {
-            map.AffichageNomTerritoire();
-            fin = deplacementPion(idJoueur);
-            StdDraw.picture(8.5, 9, "./src/images/RISK_menu.png", 14.75, 9.75);
-            map.AffichageMapJoueur(idJoueur);
-            affichagePionList();
-            for (int f = 0; f < pionListe.size(); f++) {
-                System.out.println("ligne " + f + " : " + pionListe.get(f));
-            }
-            if (fin == "fin") {
-                j++;
-            }
-        }
-    }
-     */
     public void phaseAttaque(int idJoueur) {
         int j = 0;
         int val = 0;
@@ -477,68 +434,7 @@ public class Jeu {
             }
         }
     }
-
-//creation d'un pion
-//	public void CreationPion(int idJoueur, String typeUnite, String typecrea) {
-//		int i = 0;
-//		while(i < 1) {
-//			if(StdDraw.isMousePressed()){
-//				map.AffichageNomTerritoire();
-//				Double xx=StdDraw.mouseX();
-//				Double yy=StdDraw.mouseY();
-//				for (int j = 0; j <= 41; j++) {
-//					int x = map.tabTerritoire[j].getPosition_x();
-//					int y = map.tabTerritoire[j].getPosition_y();
-//					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() == idJoueur && typecrea == "placement") {
-//						switch(typeUnite) {
-//							case "cavalier" :
-//								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-//								System.out.println("cout "+Cavalier.getCout());
-//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
-//								break;
-//							case "soldat" :
-//								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-//								System.out.println("cout "+Soldat.getCout());
-//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
-//								break;
-//							case "canon" :
-//								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-//								System.out.println("cout "+Canon.getCout());
-//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
-//								break;
-//						}
-//						i++;
-//					}
-//					if ((x-0.5) <= xx && xx <= (x+0.5) && (y-0.25) <= yy && yy <= (y+0.25) && map.tabTerritoire[j].getIdJoueur() != idJoueur && typecrea == "attaque") {
-//						switch(typeUnite) {
-//							case "cavalier" :
-//								new Cavalier(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-//								System.out.println("cout "+Cavalier.getCout());
-//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Cavalier.getCout());
-//								break;
-//							case "soldat" :
-//								new Soldat(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-//								System.out.println("cout "+Soldat.getCout());
-//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Soldat.getCout());
-//								break;
-//							case "canon" :
-//								new Canon(tabUnite[idJoueur].getNombre(), idJoueur, xx, yy);
-//								pionListe.add(idJoueur+" "+typeUnite+" "+x+" "+y);
-//								System.out.println("cout "+Canon.getCout());
-//								tabUnite[idJoueur].setNombre(tabUnite[idJoueur].getNombre()-Canon.getCout());
-//								break;
-//						}
-//						i++;
-//					}
-//				}
-//			}
-//		}
-//	}
+    
 //affichage des pions pr�sents sur la map
     public void AffichagePions() {
         String ligne;

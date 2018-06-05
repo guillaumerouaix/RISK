@@ -19,30 +19,7 @@ public class Map {
         findTerritoiresVoisins();
     }
 
-    //// cr�ation des territoires
-    // public void creationTerritoires(int nbJoueur) {
-    // Random r = new Random();
-    // int i = 0;
-    // try {
-    // String ligne;
-    // BufferedReader fichier = new BufferedReader(new
-    //// FileReader("./src/Territoire.txt"));
-    // while ((ligne = fichier.readLine()) != null) {
-    // String values[] = ligne.split(" ");
-    // int x = Integer.parseInt(values[3]);
-    // int y = Integer.parseInt(values[4]);
-    // int idRegion = Integer.parseInt(values[0]);
-    // int idTerritoire = Integer.parseInt(values[1]);
-    // int idJoueurAleatoire = 0 + r.nextInt(nbJoueur + 1 - 0);
-    // territoireListe.get(i) = new Territoire(values[5], idRegion, values[6],
-    //// idTerritoire, idJoueurAleatoire, x, y, values[2]);
-    // i++;
-    // }
-    // fichier.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
+
     public void listageTerritoire(int nbJoueur) {
         try {
             String ligne;
@@ -131,66 +108,7 @@ public class Map {
         }
     }
 
-    // public void attributionTerritoire(int nbJoueur) {
-    // ArrayList<Territoire> listeTemp = this.territoireListe;
-    // Random rand = new Random();
-    // int nbTerJoueur = (listeTemp.size() % (nbJoueur+1));
-    // if(listeTemp.size()%nbJoueur != 0) {
-    // for (int j = 0; j < 1; j++) {
-    // int nombreAleatoire = rand.nextInt(nbJoueur - 0 + 1) + 0;
-    // listeTemp.get(j).setIdJoueur(nombreAleatoire);
-    // listeTemp.remove(j);
-    // }
-    // }
-    // for (int i = 0; i < nbJoueur; i++) {
-    // for (int j = 0; j < nbTerJoueur; j++) {
-    // int nombreAleatoire = rand.nextInt(listeTemp.size() - 0 + 1) + 0;
-    // listeTemp.get(nombreAleatoire).setIdJoueur(i);
-    // listeTemp.remove(nombreAleatoire);
-    // }
-    // }
-    // public void listageTerritoire(int nbJoueur) {
-    // try {
-    // String ligne;
-    // BufferedReader fichier = new BufferedReader(new
-    // FileReader("./src/Territoire.txt"));
-    // while ((ligne = fichier.readLine()) != null) {
-    // String values[] = ligne.split(" ");
-    // int x = Integer.parseInt(values[3]);
-    // int y = Integer.parseInt(values[4]);
-    // int idRegion = Integer.parseInt(values[0]);
-    // int idTerritoire = Integer.parseInt(values[1]);
-    // Random rand = new Random();
-    // int nombreAleatoire = 0 + rand.nextInt(nbJoueur+1 - 0);
-    // territoireListe.add(new Territoire(values[5], idRegion, values[6],
-    // idTerritoire, nombreAleatoire, x, y, values[2]));
-    // }
-    // fichier.close();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
-    //
-    //
-    //
-    // public void attributionTerritoire(int nbJoueur) {
-    // System.out.println(territoireListe.size()+" aaaa");
-    // ArrayList<Territoire> listeTemp = this.territoireListe;
-    // int nbTerJoueur = (listeTemp.size() / (nbJoueur+1));
-    // for (int i = 0; i < nbJoueur; i++) {
-    // for (int j = 0; j < nbTerJoueur; j++) {
-    // Random rand = new Random();
-    // int nombreAleatoire = 0 + rand.nextInt(listeTemp.size() - 0);
-    // listeTemp.get(nombreAleatoire).setIdJoueur(i);
-    // listeTemp.remove(nombreAleatoire);
-    // System.out.println(territoireListe.size()+" aaaa");
-    // }
-    // }
-    // for (int i = 0; i < territoireListe.size(); i++) {
-    // System.out.println(listeTemp.size()+"
-    // "+territoireListe.get(i).getPosition_x());
-    // }
-    // }
+   
     // r�cuperation du nb de territoires poss�dant un joueur
     public int getNbTerritoireJoueur(int idJoueur) {
         int nbTerritoireJoueur = 0;

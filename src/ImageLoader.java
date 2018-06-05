@@ -30,14 +30,5 @@ public class ImageLoader extends JFrame {
 		this.add(fond);
 
 	}
-
-	/*
-	@Override
-	public void paintComponents(Graphics g) {
-		super.paintComponents(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(imgmenu ,0,0,null);
-	}
-	*/
 }
 
