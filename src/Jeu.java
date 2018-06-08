@@ -133,11 +133,14 @@ public class Jeu {
         int j = 0;
         int val = 0;
         while (j < 1) {
-            attaque(idJoueur);
+            while (attaque(idJoueur) != 1) {
+                attaque(idJoueur);
+            }
+            j++;
         }
     }
 
-    public void attaque(int idJoueur) {
+    public int attaque(int idJoueur) {
         map.AffichageNomTerritoire();
         JOptionPane.showMessageDialog(null, "Selectionnez un territoire duquel attaquer", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
         Territoire t = null;
@@ -145,6 +148,9 @@ public class Jeu {
             t = getTerritoireAttaque(idJoueur);
         }
         if (t != null && t.getListUnite().size() > 1) {
+            if (t.getNom() == "a") {
+                return 1;
+            }
             System.out.println(t.getNom());
             JOptionPane.showMessageDialog(null, "Selectionnez un territoire à attaquer", "Deplacement", JOptionPane.INFORMATION_MESSAGE);
             Territoire t2 = null;
@@ -152,6 +158,9 @@ public class Jeu {
                 t2 = getTerritoireAAttaquer(idJoueur);
             }
             if (t2 != null) {
+                if (t2.getNom() == "a") {
+                    return 1;
+                }
                 System.out.println(t2.getNom());
                 int gagnant = t.attaquer(t2, map);
                 System.out.println("Gagnant de la bataille = Joueur " + gagnant);
@@ -162,6 +171,7 @@ public class Jeu {
                 AffihageSoldeUniteJoueur(idJoueur);
             }
         }
+        return 0;
     }
 
     private Territoire getTerritoireAttaque(int idJoueur) {
@@ -170,7 +180,10 @@ public class Jeu {
             Double xx = StdDraw.mouseX();
             Double yy = StdDraw.mouseY();
             if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-                return null;
+                Territoire t = new Territoire("a", 20, "a", 100, idJoueur, 1000, 1000, "a");
+                t.addUnite(new Soldat(idJoueur, idJoueur, idJoueur));
+                t.addUnite(new Soldat(idJoueur, idJoueur, idJoueur));
+                return t;
             }
             Territoire t = map.getTerritoireClicked(xx, yy);
             if (t != null && t.getIdJoueur() == idJoueur) {
@@ -186,7 +199,7 @@ public class Jeu {
             Double xx = StdDraw.mouseX();
             Double yy = StdDraw.mouseY();
             if (13.5 <= xx && xx <= 16.5 && 2.25 <= yy && yy <= 3.25) {
-                return null;
+                return new Territoire("a", 20, "a", 100, idJoueur, 1000, 1000, "a");
             }
             Territoire t = map.getTerritoireClicked(xx, yy);
             if (t != null && t.getIdJoueur() != idJoueur) {
@@ -528,7 +541,7 @@ public class Jeu {
     public void affectationMission() {
         int j = 0;
         for (int i = 0; i <= nbJoueur; i++) {
-            missionListe.add(new Mission(i));
+            missionListe.add(new Mission(i, nbJoueur));
             j = i + 1;
             JOptionPane.showMessageDialog(null, "Attention ! \nJoueur " + j + ", ta mission va etre devoilee, seul toi dois la connaitre.", "Mission", JOptionPane.INFORMATION_MESSAGE);
             JOptionPane.showMessageDialog(null, "Joueur " + j + ", voici ta mission : \n" + missionListe.get(i).getMissionText(), "Mission", JOptionPane.INFORMATION_MESSAGE);

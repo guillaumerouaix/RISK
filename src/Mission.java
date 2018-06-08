@@ -8,14 +8,14 @@ public class Mission {
     private int idJoueurDetruire;
     private Map map;
 
-    public Mission(int idjoueur) {
+    public Mission(int idjoueur, int nbJoueur) {
         idJoueur = idjoueur;
         Random r = new Random();
         idMission = 1 + r.nextInt(8 + 1 - 1);
         int joueur = 0;
         while (joueur == idjoueur) {
             Random r2 = new Random();
-            joueur = 1 + r2.nextInt(8 + 1 - 1);
+            joueur = 1 + r2.nextInt(nbJoueur + 1 - 1);
             idJoueurDetruire = joueur;
         }
     }
